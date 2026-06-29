@@ -448,6 +448,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2660926356113027163, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
   m_PrefabInstance: {fileID: 1758267735}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &142619888 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1712148502986564766, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
+  m_PrefabInstance: {fileID: 1758267735}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &145380978
 GameObject:
   m_ObjectHideFlags: 0
@@ -1424,6 +1429,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2512387469002778308, guid: 48cb3fb68c91eb94999fd99957eb0cae, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1.147
+      objectReference: {fileID: 0}
     - target: {fileID: 2512387470319625105, guid: 48cb3fb68c91eb94999fd99957eb0cae, type: 3}
       propertyPath: m_OccludeARHitsWith2DObjects
       value: 1
@@ -1483,9 +1492,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 2512387470528047738, guid: 48cb3fb68c91eb94999fd99957eb0cae, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1758267736}
     - targetCorrespondingSourceObject: {fileID: 2512387470890420967, guid: 48cb3fb68c91eb94999fd99957eb0cae, type: 3}
       insertIndex: 0
       addedObject: {fileID: 436358034}
@@ -2007,7 +2013,7 @@ Transform:
   m_GameObject: {fileID: 522381519}
   serializedVersion: 2
   m_LocalRotation: {x: 0.81791866, y: 0.17874311, z: 0.39215502, w: -0.3811488}
-  m_LocalPosition: {x: -1.048, y: -0.595, z: -0.094}
+  m_LocalPosition: {x: -0.65, y: -0.327, z: -0.448}
   m_LocalScale: {x: 0.10000002, y: 0.1, z: 0.10000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2433,7 +2439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70b342d8ce5c2fd48b8fa3147d48d1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Animation.Rigging::UnityEngine.Animations.Rigging.Rig
-  m_Weight: 1
+  m_Weight: 0.588
   m_Effectors:
   - m_Transform: {fileID: 930772704}
     m_Style:
@@ -2486,11 +2492,6 @@ MonoBehaviour:
   m_SerializedLibrary: {fileID: 11400000, guid: 481e95efab0c64a21aec77f3915b3cba, type: 2}
   m_MaxNumberOfMovingImages: 6
   m_TrackedImagePrefab: {fileID: 1741923974}
---- !u!4 &608830365 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2512387470528047738, guid: 48cb3fb68c91eb94999fd99957eb0cae, type: 3}
-  m_PrefabInstance: {fileID: 331264285}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &637151521 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5963138107579739024, guid: 02644bbd28622410a84cf154fc436b8a, type: 3}
@@ -2627,18 +2628,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aeda7bfbf984f2a4da5ab4b8967b115d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Animation.Rigging::UnityEngine.Animations.Rigging.TwoBoneIKConstraint
-  m_Weight: 1
+  m_Weight: 0.085
   m_Data:
-    m_Root: {fileID: 180756860}
-    m_Mid: {fileID: 0}
+    m_Root: {fileID: 142619888}
+    m_Mid: {fileID: 180756860}
     m_Tip: {fileID: 433191002}
     m_Target: {fileID: 930772704}
     m_Hint: {fileID: 1607581660}
     m_TargetPositionWeight: 1
-    m_TargetRotationWeight: 1
+    m_TargetRotationWeight: 0.698
     m_HintWeight: 1
     m_MaintainTargetPositionOffset: 0
-    m_MaintainTargetRotationOffset: 0
+    m_MaintainTargetRotationOffset: 1
 --- !u!1 &690328644
 GameObject:
   m_ObjectHideFlags: 0
@@ -4173,7 +4174,7 @@ Transform:
   m_GameObject: {fileID: 930772703}
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000006538827, y: 0.8910065, z: -0.000000012835327, w: 0.4539906}
-  m_LocalPosition: {x: -0.9809913, y: 1.5795484, z: -0.013806467}
+  m_LocalPosition: {x: -0.981, y: 1.768, z: -0.014}
   m_LocalScale: {x: 0.10000002, y: 0.1, z: 0.10000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7430,7 +7431,7 @@ Transform:
   m_GameObject: {fileID: 1607581659}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.0031604, y: 1.1439583, z: 0.0023002634}
+  m_LocalPosition: {x: -0.987, y: 1.021, z: -0.011}
   m_LocalScale: {x: 0.10000002, y: 0.1, z: 0.10000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7555,7 +7556,7 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0, z: 0}
     rotationOffsetEuler: {x: 0, y: 0, z: 0}
     followSpeed: 50
-    copyRotation: 0
+    copyRotation: 1
     trackedImage: {fileID: 0}
     isTracking: 0
   - referenceImageName: SelfMarker
@@ -7563,7 +7564,7 @@ MonoBehaviour:
     positionOffset: {x: 0, y: 0.4, z: 0}
     rotationOffsetEuler: {x: 0, y: 0, z: 0}
     followSpeed: 50
-    copyRotation: 1
+    copyRotation: 0
     trackedImage: {fileID: 0}
     isTracking: 0
 --- !u!1 &1756045394
@@ -7647,11 +7648,11 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 608830365}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.4125
+      value: 0.41250014
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
       propertyPath: m_LocalScale.y
@@ -7659,35 +7660,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.4125
+      value: 0.41250014
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.98867
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.43191
+      value: -0.36
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.0082841
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.4539906
+      value: -0.009995772
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.8910065
+      value: 0.9999501
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -7695,7 +7696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 126
+      value: 181.145
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -10094,3 +10095,4 @@ SceneRoots:
   - {fileID: 1651441326}
   - {fileID: 1741923975}
   - {fileID: 1409676578}
+  - {fileID: 1758267735}

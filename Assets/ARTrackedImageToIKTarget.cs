@@ -123,6 +123,7 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
     {
         foreach (MarkerRigBinding binding in bindings)
         {
+
             if (binding == null)
                 continue;
 
@@ -151,6 +152,10 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
                 binding.rigTarget.rotation =
                     Quaternion.Slerp(binding.rigTarget.rotation, targetRotation, smoothAmount);
             }
+    
+                    Debug.Log(
+                        $"Image : {binding.trackedImage.referenceImage.name}, State: {binding.trackedImage.trackingState}, Position: {targetPosition}, Rotation: {targetRotation.eulerAngles}");
+                
         }
     }
 }
