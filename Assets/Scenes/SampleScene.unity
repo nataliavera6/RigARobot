@@ -7577,7 +7577,7 @@ MonoBehaviour:
     isTracking: 0
   - referenceImageName: SelfMarker
     rigTarget: {fileID: 1758267736}
-    positionOffset: {x: 0, y: 0.4, z: 0}
+    positionOffset: {x: 0, y: 0, z: 0}
     rotationOffsetEuler: {x: 0, y: 0, z: 0}
     followSpeed: 50
     copyRotation: 0
