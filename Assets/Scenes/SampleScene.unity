@@ -2351,7 +2351,7 @@ MonoBehaviour:
     m_Root: {fileID: 216763072}
     m_Mid: {fileID: 81555263}
     m_Tip: {fileID: 760900366}
-    m_Target: {fileID: 1651441326}
+    m_Target: {fileID: 258921285}
     m_Hint: {fileID: 536872953}
     m_TargetPositionWeight: 1
     m_TargetRotationWeight: 0
@@ -2756,7 +2756,7 @@ Transform:
   m_GameObject: {fileID: 691995116}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.1799214, y: 0.45082852, z: -0.21556957}
+  m_LocalPosition: {x: -1.17992, y: 0.45082834, z: -0.21557017}
   m_LocalScale: {x: 0.10000002, y: 0.1, z: 0.10000002}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6754,8 +6754,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1409676577}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.22437648, y: -0.6708413, z: 0.6723141, w: 0.21822232}
-  m_LocalPosition: {x: -1.277, y: 0.81, z: -0.45}
+  m_LocalRotation: {x: 0.5100895, y: -0.49364027, z: 0.49209723, w: 0.5039526}
+  m_LocalPosition: {x: -0.21698864, y: 0.016996056, z: 1.0106709}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7536,7 +7536,8 @@ MonoBehaviour:
   trackedImageManager: {fileID: 608830361}
   bindings:
   - referenceImageName: marker1
-    rigTarget: {fileID: 1651441326}
+    rigName: {fileID: 0}
+    rigTarget: {fileID: 258921285}
     positionOffset: {x: 0, y: 0, z: 0}
     rotationOffsetEuler: {x: 0, y: 0, z: 0}
     followSpeed: 50
@@ -7544,7 +7545,8 @@ MonoBehaviour:
     trackedImage: {fileID: 0}
     isTracking: 0
   - referenceImageName: rightArm
-    rigTarget: {fileID: 1409676578}
+    rigName: {fileID: 0}
+    rigTarget: {fileID: 2042929533}
     positionOffset: {x: 0, y: 0, z: 0}
     rotationOffsetEuler: {x: 0, y: 0, z: 0}
     followSpeed: 50
@@ -7552,6 +7554,7 @@ MonoBehaviour:
     trackedImage: {fileID: 0}
     isTracking: 0
   - referenceImageName: LeftLegMarker
+    rigName: {fileID: 0}
     rigTarget: {fileID: 1148837509}
     positionOffset: {x: 0, y: 0, z: 0}
     rotationOffsetEuler: {x: 0, y: 0, z: 0}
@@ -7560,6 +7563,7 @@ MonoBehaviour:
     trackedImage: {fileID: 0}
     isTracking: 0
   - referenceImageName: RightLegMarker
+    rigName: {fileID: 0}
     rigTarget: {fileID: 522381520}
     positionOffset: {x: 0, y: 0, z: 0}
     rotationOffsetEuler: {x: 0, y: 0, z: 0}
@@ -7568,6 +7572,7 @@ MonoBehaviour:
     trackedImage: {fileID: 0}
     isTracking: 0
   - referenceImageName: HeadMarker
+    rigName: {fileID: 0}
     rigTarget: {fileID: 1225240841}
     positionOffset: {x: 0, y: 0.2, z: 0.3}
     rotationOffsetEuler: {x: 0, y: 0, z: 0}
@@ -7576,6 +7581,7 @@ MonoBehaviour:
     trackedImage: {fileID: 0}
     isTracking: 0
   - referenceImageName: SelfMarker
+    rigName: {fileID: 0}
     rigTarget: {fileID: 1758267736}
     positionOffset: {x: 0, y: 0, z: 0}
     rotationOffsetEuler: {x: 0, y: 0, z: 0}
@@ -8804,6 +8810,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 691995117}
+  - {fileID: 2042929533}
   m_Father: {fileID: 2144420921}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2010388410
@@ -8823,7 +8830,7 @@ MonoBehaviour:
     m_Root: {fileID: 1697982317}
     m_Mid: {fileID: 1298102671}
     m_Tip: {fileID: 15892183}
-    m_Target: {fileID: 1409676578}
+    m_Target: {fileID: 2042929533}
     m_Hint: {fileID: 691995117}
     m_TargetPositionWeight: 1
     m_TargetRotationWeight: 1
@@ -8905,6 +8912,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2021867756}
   m_CullTransparentMesh: 1
+--- !u!1 &2042929532
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2042929533}
+  m_Layer: 0
+  m_Name: RightHand_target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2042929533
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2042929532}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.22437648, y: -0.6708413, z: 0.67231405, w: 0.21822233}
+  m_LocalPosition: {x: -1.3218541, y: 0.9139299, z: -0.41688195}
+  m_LocalScale: {x: 0.24242416, y: 0.24242425, z: 0.24242416}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2010388409}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2047503719
 GameObject:
   m_ObjectHideFlags: 0
@@ -9721,6 +9759,38 @@ MonoBehaviour:
   m_Weight: 1
   m_Effectors:
   - m_Transform: {fileID: 1409676578}
+    m_Style:
+      shape: {fileID: 4300000, guid: 687b70eb9c49243639f9379f6965034f, type: 2}
+      color: {r: 1, g: 0, b: 0, a: 0.5}
+      size: 0.1
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+    m_Visible: 1
+  - m_Transform: {fileID: 691995117}
+    m_Style:
+      shape: {fileID: 4300000, guid: e050c2b16fe384bd994474655a4b4968, type: 2}
+      color: {r: 1, g: 0, b: 0, a: 0.5}
+      size: 0.1
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+    m_Visible: 1
+  - m_Transform: {fileID: 1409676578}
+    m_Style:
+      shape: {fileID: 4300000, guid: 687b70eb9c49243639f9379f6965034f, type: 2}
+      color: {r: 1, g: 0, b: 0, a: 0.5}
+      size: 0.1
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+    m_Visible: 1
+  - m_Transform: {fileID: 691995117}
+    m_Style:
+      shape: {fileID: 4300000, guid: e050c2b16fe384bd994474655a4b4968, type: 2}
+      color: {r: 1, g: 0, b: 0, a: 0.5}
+      size: 0.1
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0}
+    m_Visible: 1
+  - m_Transform: {fileID: 2042929533}
     m_Style:
       shape: {fileID: 4300000, guid: 687b70eb9c49243639f9379f6965034f, type: 2}
       color: {r: 1, g: 0, b: 0, a: 0.5}

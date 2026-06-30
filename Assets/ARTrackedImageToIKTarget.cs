@@ -10,15 +10,20 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
     {
         [Header("Marker")]
         [Tooltip("Must match the image name in the XR Reference Image Library.")]
+        // name of image that will be detected 
         public string referenceImageName;
-
+        [Header("Rig")]
+        public Transform rigName;
+        // Software version of a marker- midpoint between limb and physical marker- limb moves toward target. target moves toward marker
         [Header("Rig Target")]
         public Transform rigTarget;
 
+        // offset (input by user)- how far away the avatar should be from the marker 
         [Header("Offsets")]
         public Vector3 positionOffset;
         public Vector3 rotationOffsetEuler;
 
+        // movement (input by user)- follow speed is how fast the limb will move toward the detected marker and copy rotation toggle determines whether the limb will rotate with the marker  
         [Header("Movement")]
         public float followSpeed = 25f;
         public bool copyRotation = false;
@@ -155,7 +160,6 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
     
                     Debug.Log(
                         $"Image : {binding.trackedImage.referenceImage.name}, State: {binding.trackedImage.trackingState}, Position: {targetPosition}, Rotation: {targetRotation.eulerAngles}");
-                
         }
     }
 }
