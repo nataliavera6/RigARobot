@@ -12,8 +12,10 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
         [Tooltip("Must match the image name in the XR Reference Image Library.")]
         // name of image that will be detected 
         public string referenceImageName;
+
         [Header("Rig")]
         public Transform rigName;
+
         // Software version of a marker- midpoint between limb and physical marker- limb moves toward target. target moves toward marker
         [Header("Rig Target")]
         public Transform rigTarget;
@@ -154,8 +156,13 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
 
             if (binding.copyRotation)
             {
+                // Vector3 currentEuler = binding.rigTarget.rotation.eulerAngles;
+                // Vector3 targetEuler = targetRotation.eulerAngles; 
+                // float newX = Mathf.LerpAngle (currentEuler.x,targetEuler.x,smoothAmount);
+                // float newY = Mathf.LerpAngle (currentEuler.y,targetEuler.y,smoothAmount);
                 binding.rigTarget.rotation =
                     Quaternion.Slerp(binding.rigTarget.rotation, targetRotation, smoothAmount);
+                    
             }
     
                     Debug.Log(
