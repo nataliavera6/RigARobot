@@ -52,7 +52,7 @@ public class CharacterRender : MonoBehaviour
         }
 
         currentCharacter = Instantiate(characterPrefab[index],position ,rotation );
-        Dictionary<string, Transform> dictionary=currentCharacter.GetComponentInChildren<markertorig>().getRigtoMarkerSetup();
+        Dictionary<string, Transform> dictionary=currentCharacter.GetComponentInChildren<markertorig>(true).getRigtoMarkerSetup();
         markerRigController.setRigTargets(dictionary);
   
     }

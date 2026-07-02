@@ -16,7 +16,7 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
 
         // Software version of a marker- midpoint between limb and physical marker- limb moves toward target. target moves toward marker
         [Header("Rig Target")]
-        public Transform rigTarget;
+        public Transform rigTarget=null;
 
         // offset (input by user)- how far away the avatar should be from the marker 
         [Header("Offsets")]
@@ -69,8 +69,9 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
     }
     public void setRigTargets(Dictionary<string, Transform> MarkerToRigDic){
         foreach(MarkerRigBinding binding in bindings){
+
             if (MarkerToRigDic.TryGetValue(binding.referenceImageName, out Transform Rig)){
-                binding.rigTarget =Rig;
+                binding.rigTarget = Rig;
             }
         }
     }
@@ -114,7 +115,9 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
                 continue;
 
             string imageName = image.referenceImage.name;
-
+            if (string.IsNullOrEmpty(imageName)){
+                continue;
+            }
             if (bindingByImageName.TryGetValue(imageName, out MarkerRigBinding binding))
             {
                 binding.trackedImage = null;
@@ -126,7 +129,9 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
     private void RegisterTrackedImage(ARTrackedImage image)
     {
         string imageName = image.referenceImage.name;
-
+        if (string.IsNullOrEmpty(imageName)){
+            return;
+        }
         if (!bindingByImageName.TryGetValue(imageName, out MarkerRigBinding binding))
         {
             return;
