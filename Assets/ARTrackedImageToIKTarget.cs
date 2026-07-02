@@ -13,8 +13,6 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
         // name of image that will be detected 
         public string referenceImageName;
 
-        [Header("Rig")]
-        public Transform rigName;
 
         // Software version of a marker- midpoint between limb and physical marker- limb moves toward target. target moves toward marker
         [Header("Rig Target")]
@@ -32,10 +30,16 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
 
         [HideInInspector] public ARTrackedImage trackedImage;
         [HideInInspector] public bool isTracking;
+        
     }
 
     [Header("AR Foundation")]
     public ARTrackedImageManager trackedImageManager;
+
+    [Header("Rig")]
+    public Transform rig;
+
+
 
     [Header("Marker to Rig Target Bindings")]
     public List<MarkerRigBinding> bindings = new List<MarkerRigBinding>();
@@ -160,6 +164,8 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
                 // Vector3 targetEuler = targetRotation.eulerAngles; 
                 // float newX = Mathf.LerpAngle (currentEuler.x,targetEuler.x,smoothAmount);
                 // float newY = Mathf.LerpAngle (currentEuler.y,targetEuler.y,smoothAmount);
+                // binding.rigTarget.rotation =
+                // //     Quaternion.Slerp(binding.rigTarget.rotation, targetRotation, smoothAmount);
                 binding.rigTarget.rotation =
                     Quaternion.Slerp(binding.rigTarget.rotation, targetRotation, smoothAmount);
                     
