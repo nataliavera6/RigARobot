@@ -67,7 +67,13 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
             }
         }
     }
-
+    public void setRigTargets(Dictionary<string, Transform> MarkerToRigDic){
+        foreach(MarkerRigBinding binding in bindings){
+            if (MarkerToRigDic.TryGetValue(binding.referenceImageName, out Transform Rig)){
+                binding.rigTarget =Rig;
+            }
+        }
+    }
     private void OnEnable()
     {
         if (trackedImageManager == null)

@@ -4984,9 +4984,9 @@ MonoBehaviour:
   characterPrefab:
   - {fileID: 6165888947927758856, guid: b3aa403ad20cc45a0bd7ae4cf1636ca0, type: 3}
   - {fileID: 5572664125164038974, guid: 407d00eb56fb04426b4c789d1d13a346, type: 3}
-  - {fileID: 6165888947927758856, guid: 0a074cd83abd741b8be5f76af149f697, type: 3}
   position: {x: -1, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
+  markerRigController: {fileID: 0}
 --- !u!1 &1139628614
 GameObject:
   m_ObjectHideFlags: 0
@@ -6860,6 +6860,97 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1756045394}
   m_CullTransparentMesh: 1
+--- !u!1001 &1770279533
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6165888947927758856, guid: b3aa403ad20cc45a0bd7ae4cf1636ca0, type: 3}
+      propertyPath: m_Name
+      value: chihuahua
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834902897420788402, guid: b3aa403ad20cc45a0bd7ae4cf1636ca0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.00003
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834902897420788402, guid: b3aa403ad20cc45a0bd7ae4cf1636ca0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.00835
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834902897420788402, guid: b3aa403ad20cc45a0bd7ae4cf1636ca0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.26607
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834902897420788402, guid: b3aa403ad20cc45a0bd7ae4cf1636ca0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834902897420788402, guid: b3aa403ad20cc45a0bd7ae4cf1636ca0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834902897420788402, guid: b3aa403ad20cc45a0bd7ae4cf1636ca0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834902897420788402, guid: b3aa403ad20cc45a0bd7ae4cf1636ca0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834902897420788402, guid: b3aa403ad20cc45a0bd7ae4cf1636ca0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834902897420788402, guid: b3aa403ad20cc45a0bd7ae4cf1636ca0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6834902897420788402, guid: b3aa403ad20cc45a0bd7ae4cf1636ca0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects:
+    - {fileID: 3138034886252574197, guid: b3aa403ad20cc45a0bd7ae4cf1636ca0, type: 3}
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6165888947927758856, guid: b3aa403ad20cc45a0bd7ae4cf1636ca0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1770279535}
+  m_SourcePrefab: {fileID: 100100000, guid: b3aa403ad20cc45a0bd7ae4cf1636ca0, type: 3}
+--- !u!1 &1770279534 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6165888947927758856, guid: b3aa403ad20cc45a0bd7ae4cf1636ca0, type: 3}
+  m_PrefabInstance: {fileID: 1770279533}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1770279535
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770279534}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc9a99ab7071a4162aeb323e1118b20b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::markertorig
+  MarkerRigList:
+  - markerName: marker1
+    RigTarget: {fileID: 0}
+  - markerName: rightArm
+    RigTarget: {fileID: 0}
+  - markerName: LeftLegMarker
+    RigTarget: {fileID: 0}
+  - markerName: RightLegMarker
+    RigTarget: {fileID: 0}
+  - markerName: HeadMarker
+    RigTarget: {fileID: 0}
+  - markerName: SelfMarker
+    RigTarget: {fileID: 0}
 --- !u!1 &1785409643
 GameObject:
   m_ObjectHideFlags: 0
@@ -8966,3 +9057,4 @@ SceneRoots:
   - {fileID: 331264285}
   - {fileID: 1741923975}
   - {fileID: 738169861}
+  - {fileID: 1770279533}

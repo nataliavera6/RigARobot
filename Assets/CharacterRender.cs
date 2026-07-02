@@ -1,4 +1,8 @@
 using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.XR.ARFoundation;
+using UnityEngine.XR.ARSubsystems;
 
 public class CharacterRender : MonoBehaviour
 {
@@ -7,12 +11,16 @@ public class CharacterRender : MonoBehaviour
     public Vector3 position;
     public Quaternion rotation;
     private GameObject currentCharacter;
+    public MultiARMarkersToRigTargets markerRigController;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         ShowCharacter(currentCharacterIndex);
     }
-
+    public GameObject getRigs(){
+        return currentCharacter;
+        
+    }
     // Update is called once per frame
     void Update()
     {
@@ -44,5 +52,8 @@ public class CharacterRender : MonoBehaviour
         }
 
         currentCharacter = Instantiate(characterPrefab[index],position ,rotation );
+        Dictionary<string, Transform> dictionary=currentCharacter.GetComponentInChildren<markertorig>().getRigtoMarkerSetup();
+        markerRigController.setRigTargets(dictionary);
+  
     }
 }

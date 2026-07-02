@@ -1176,6 +1176,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1361479298812640247}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8522376367750933101
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 735144236276022459}
+  - component: {fileID: 8067642970471768088}
+  m_Layer: 0
+  m_Name: markertorig
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &735144236276022459
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8522376367750933101}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0.9999501, z: -0, w: -0.009995772}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2.42424, y: 2.4242425, z: 2.42424}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5052410770621952388}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8067642970471768088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8522376367750933101}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc9a99ab7071a4162aeb323e1118b20b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::markertorig
+  MarkerRigList:
+  - markerName: marker1
+    RigTarget: {fileID: 7150426790945508115}
+  - markerName: rightArm
+    RigTarget: {fileID: 5576157972680709178}
+  - markerName: LeftLegMarker
+    RigTarget: {fileID: 1717832277168417891}
+  - markerName: RightLegMarker
+    RigTarget: {fileID: 4939274755860778140}
+  - markerName: HeadMarker
+    RigTarget: {fileID: 3109900884299863298}
+  - markerName: SelfMarker
+    RigTarget: {fileID: 5052410770621952388}
 --- !u!1 &8793443904307528603
 GameObject:
   m_ObjectHideFlags: 0
@@ -1310,6 +1367,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
+      insertIndex: 0
+      addedObject: {fileID: 735144236276022459}
+    - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3760359274885533895}
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
@@ -1331,6 +1391,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6373725871026272436}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 811112973595327001}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2324314731531381938}
   m_SourcePrefab: {fileID: 100100000, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
 --- !u!4 &25153101515503062 stripped
 Transform:
@@ -1425,6 +1491,40 @@ MonoBehaviour:
   - m_Rig: {fileID: 7836858029583698904}
     m_Active: 1
   m_Effectors: []
+--- !u!114 &811112973595327001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5572664125164038974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc9a99ab7071a4162aeb323e1118b20b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::markertorig
+  MarkerRigList: []
+--- !u!114 &2324314731531381938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5572664125164038974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc9a99ab7071a4162aeb323e1118b20b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::markertorig
+  MarkerRigList:
+  - markerName: marker1
+    RigTarget: {fileID: 0}
+  - markerName: marker1
+    RigTarget: {fileID: 0}
+  - markerName: marker1
+    RigTarget: {fileID: 0}
+  - markerName: marker1
+    RigTarget: {fileID: 0}
 --- !u!4 &6152365662340085786 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1510652388387417717, guid: a075d97832605485ea0c39c8f67dca6d, type: 3}
