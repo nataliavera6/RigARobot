@@ -2749,6 +2749,8 @@ MonoBehaviour:
   characterPrefab:
   - {fileID: 6165888947927758856, guid: b3aa403ad20cc45a0bd7ae4cf1636ca0, type: 3}
   - {fileID: 5572664125164038974, guid: 407d00eb56fb04426b4c789d1d13a346, type: 3}
+  - {fileID: 1965672509072596252, guid: 06c37a7aa708f415c82714466b881a98, type: 3}
+  - {fileID: 2892995252556313205, guid: 2955b28fb50b14cafa0fc7505e913941, type: 3}
   position: {x: -1, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   markerRigController: {fileID: 1741923976}
@@ -4156,7 +4158,7 @@ MonoBehaviour:
   trackedImageManager: {fileID: 608830361}
   rig: {fileID: 0}
   bindings:
-  - referenceImageName: marker1
+  - referenceImageName: leftArm
     rigTarget: {fileID: 0}
     positionOffset: {x: 0, y: 0, z: 0}
     rotationOffsetEuler: {x: 0, y: 0, z: 0}

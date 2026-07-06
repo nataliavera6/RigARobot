@@ -1252,7 +1252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::markertorig
   MarkerRigList:
-  - markerName: marker1
+  - markerName: leftArm
     RigTarget: {fileID: 7150426790945508115}
   - markerName: rightArm
     RigTarget: {fileID: 5576157972680709178}

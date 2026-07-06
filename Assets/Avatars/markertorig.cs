@@ -13,7 +13,7 @@ public class markertorig : MonoBehaviour
     
     private List<MarkertoRig> CreatePreestablishedMarkers(){
         List<MarkertoRig> defaultMarkers = new List<MarkertoRig>();
-        defaultMarkers.Add(new MarkertoRig{markerName="marker1",RigTarget=null });
+        defaultMarkers.Add(new MarkertoRig{markerName="leftArm",RigTarget=null });
         defaultMarkers.Add(new MarkertoRig{markerName="rightArm",RigTarget=null });
         defaultMarkers.Add(new MarkertoRig{markerName="LeftLegMarker",RigTarget=null });
         defaultMarkers.Add(new MarkertoRig{markerName="RightLegMarker",RigTarget=null });
@@ -31,8 +31,9 @@ public class markertorig : MonoBehaviour
         foreach(MarkertoRig binding in MarkerRigList){
             if(binding==null||string.IsNullOrEmpty(binding.markerName)|| binding.RigTarget==null){
                continue;
+            }else{
+                MarkerRigDic.Add(binding.markerName, binding.RigTarget);
             }
-            MarkerRigDic.Add(binding.markerName, binding.RigTarget);
         }
     }
     public Dictionary<string, Transform> getRigtoMarkerSetup(){
