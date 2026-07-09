@@ -7,10 +7,13 @@ public class markertorig : MonoBehaviour
         public string markerName;
         public Transform RigTarget; 
     }
+
     public List<MarkertoRig> MarkerRigList = new List<MarkertoRig>();
     
     private Dictionary<string,Transform> MarkerRigDic= new Dictionary<string,Transform>();
     
+
+    //base marker names so user doesn't have to retype it every time the add an avatar. will show up in inspector when you import the script to a character scene 
     private List<MarkertoRig> CreatePreestablishedMarkers(){
         List<MarkertoRig> defaultMarkers = new List<MarkertoRig>();
         defaultMarkers.Add(new MarkertoRig{markerName="leftArm",RigTarget=null });
@@ -21,11 +24,11 @@ public class markertorig : MonoBehaviour
         defaultMarkers.Add(new MarkertoRig{markerName="SelfMarker",RigTarget=null });
         return defaultMarkers;
     }
+    //call the marker name template creation
     private void Reset(){
         MarkerRigList = CreatePreestablishedMarkers();
     }
-    
-  
+    //add list to dictionary with marker name as key and rigtarget as value 
     private void Awake(){
         MarkerRigDic.Clear();
         foreach(MarkertoRig binding in MarkerRigList){
@@ -36,6 +39,7 @@ public class markertorig : MonoBehaviour
             }
         }
     }
+    //used in ARTrackedImagetoIKTarget to get the new avatar's rig and marker setup
     public Dictionary<string, Transform> getRigtoMarkerSetup(){
         return MarkerRigDic;
     }
