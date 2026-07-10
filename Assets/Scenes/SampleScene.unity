@@ -485,17 +485,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::markertorig
   MarkerRigList:
-  - markerName: leftArm
+  - markerName: 0
     RigTarget: {fileID: 0}
-  - markerName: rightArm
+  - markerName: 0
     RigTarget: {fileID: 0}
-  - markerName: LeftLegMarker
+  - markerName: 0
     RigTarget: {fileID: 0}
-  - markerName: RightLegMarker
+  - markerName: 0
     RigTarget: {fileID: 0}
-  - markerName: HeadMarker
+  - markerName: 0
     RigTarget: {fileID: 0}
-  - markerName: SelfMarker
+  - markerName: 0
     RigTarget: {fileID: 0}
 --- !u!4 &243106615
 Transform:
@@ -1244,6 +1244,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 717440024}
   m_CullTransparentMesh: 1
+--- !u!1 &722588809
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 722588810}
+  - component: {fileID: 722588811}
+  m_Layer: 0
+  m_Name: ArucoScript
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &722588810
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722588809}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2019584161}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &722588811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 722588809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc08dc51b9dbe49b1b3cf1f7bc9cca63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  arCameraManager: {fileID: 1553500810}
+  markerLengthMeters: 0.1
+  rig: {fileID: 0}
+  bindings:
+  - markerID: 14
+    rigTarget: {fileID: 0}
+    positionOffset: {x: 0, y: 0, z: 0}
+    rotationOffsetEuler: {x: 0, y: 0, z: 0}
+    followSpeed: 0
+    copyRotation: 0
+    isTracking: 0
+    trackedPosition: {x: 0, y: 0, z: 0}
+    trackedRotation: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &738169860
 GameObject:
   m_ObjectHideFlags: 0
@@ -2811,7 +2868,8 @@ MonoBehaviour:
   - {fileID: 7954030329660270100, guid: 76c258f4fe36c4756828cc39648f1f93, type: 3}
   position: {x: -1, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
-  markerRigController: {fileID: 1741923976}
+  markerRigController: {fileID: 722588811}
+  markerRigController22: {fileID: 0}
 --- !u!1 &1139628614
 GameObject:
   m_ObjectHideFlags: 0
@@ -4169,6 +4227,17 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1553500810 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2512387469002778329, guid: 48cb3fb68c91eb94999fd99957eb0cae, type: 3}
+  m_PrefabInstance: {fileID: 331264285}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553500799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4966719baa26e4b0e8231a24d9bd491a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1741923974
 GameObject:
   m_ObjectHideFlags: 0
@@ -5281,6 +5350,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4a50d88b55b45648927679791f472de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2019584160
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2019584161}
+  m_Layer: 0
+  m_Name: arucoMarkers
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2019584161
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2019584160}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1, y: 0.425, z: 0.167}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 722588810}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2021867756
 GameObject:
   m_ObjectHideFlags: 0
@@ -5877,3 +5978,4 @@ SceneRoots:
   - {fileID: 331264285}
   - {fileID: 1741923975}
   - {fileID: 738169861}
+  - {fileID: 2019584161}

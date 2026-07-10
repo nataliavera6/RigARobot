@@ -265,7 +265,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2605509680360825257}
-  - component: {fileID: 2036553392770794121}
   m_Layer: 0
   m_Name: self
   m_TagString: Untagged
@@ -290,30 +289,6 @@ Transform:
   - {fileID: 6910973067067788169}
   m_Father: {fileID: 7147222504690169249}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2036553392770794121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2529460315468352062}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeda7bfbf984f2a4da5ab4b8967b115d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Animation.Rigging::UnityEngine.Animations.Rigging.TwoBoneIKConstraint
-  m_Weight: 1
-  m_Data:
-    m_Root: {fileID: 0}
-    m_Mid: {fileID: 0}
-    m_Tip: {fileID: 0}
-    m_Target: {fileID: 5052410770621952388}
-    m_Hint: {fileID: 6910973067067788169}
-    m_TargetPositionWeight: 1
-    m_TargetRotationWeight: 1
-    m_HintWeight: 1
-    m_MaintainTargetPositionOffset: 0
-    m_MaintainTargetRotationOffset: 0
 --- !u!1 &2880107112142962071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1340,17 +1315,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::markertorig
   MarkerRigList:
-  - markerName: leftArm
+  - markerName: 0
     RigTarget: {fileID: 7150426790945508115}
-  - markerName: rightArm
+  - markerName: 1
     RigTarget: {fileID: 5576157972680709178}
-  - markerName: LeftLegMarker
+  - markerName: 2
     RigTarget: {fileID: 1717832277168417891}
-  - markerName: RightLegMarker
+  - markerName: 3
     RigTarget: {fileID: 4939274755860778140}
-  - markerName: HeadMarker
+  - markerName: 4
     RigTarget: {fileID: 4931971055695691094}
-  - markerName: SelfMarker
+  - markerName: 5
     RigTarget: {fileID: 5052410770621952388}
 --- !u!1 &8793443904307528603
 GameObject:

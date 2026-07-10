@@ -11,7 +11,8 @@ public class CharacterRender : MonoBehaviour
     public Vector3 position;
     public Quaternion rotation;
     private GameObject currentCharacter;
-    public MultiARMarkersToRigTargets markerRigController;
+    public ArucoMarkerTracker markerRigController;
+    public ArucoMarkerTracker markerRigController22;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -52,7 +53,7 @@ public class CharacterRender : MonoBehaviour
         }
 
         currentCharacter = Instantiate(characterPrefab[index],position ,rotation );
-        Dictionary<string, Transform> dictionary=currentCharacter.GetComponentInChildren<markertorig>().getRigtoMarkerSetup();
+        Dictionary<int, Transform> dictionary=currentCharacter.GetComponentInChildren<markertorig>().getRigtoMarkerSetup();
         markerRigController.setRigTargets(dictionary);
   
     }
