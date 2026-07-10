@@ -1315,17 +1315,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::markertorig
   MarkerRigList:
-  - markerName: 0
+  - markerName: 6
     RigTarget: {fileID: 7150426790945508115}
-  - markerName: 1
+  - markerName: 8
     RigTarget: {fileID: 5576157972680709178}
-  - markerName: 2
+  - markerName: 9
     RigTarget: {fileID: 1717832277168417891}
-  - markerName: 3
+  - markerName: 11
     RigTarget: {fileID: 4939274755860778140}
-  - markerName: 4
+  - markerName: 12
     RigTarget: {fileID: 4931971055695691094}
-  - markerName: 5
+  - markerName: 14
     RigTarget: {fileID: 5052410770621952388}
 --- !u!1 &8793443904307528603
 GameObject:

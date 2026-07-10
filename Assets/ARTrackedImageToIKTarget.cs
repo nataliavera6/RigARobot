@@ -5,6 +5,7 @@ using UnityEngine.XR.ARSubsystems;
 
 public class MultiARMarkersToRigTargets : MonoBehaviour
 {
+    //Unity inputs for elements in the bindings list 
     [System.Serializable]
     public class MarkerRigBinding
     {
@@ -32,7 +33,7 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
         [HideInInspector] public bool isTracking;
         
     }
-
+    //unity input
     [Header("AR Foundation")]
     public ARTrackedImageManager trackedImageManager;
 
@@ -49,6 +50,7 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
 
     private void Awake()
     {
+        //Add list elements to dictionary and set key to marker name and MarkerRigBinding instance as value
         bindingByImageName.Clear();
 
         foreach (MarkerRigBinding binding in bindings)
@@ -67,6 +69,8 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
             }
         }
     }
+    //Called in Character renderer to set rig targets for each new character 
+        //since characters change in code and not in unity inspector this does what you would normally do in the unity inspector
     public void setRigTargets(Dictionary<string, Transform> MarkerToRigDic){
         foreach(MarkerRigBinding binding in bindings){
 
@@ -75,6 +79,7 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
             }
         }
     }
+
     private void OnEnable()
     {
         if (trackedImageManager == null)
@@ -141,11 +146,11 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
         binding.isTracking = image.trackingState == TrackingState.Tracking;
     }
 
+    //move rig to marker position
     private void Update()
     {
         foreach (MarkerRigBinding binding in bindings)
         {
-
             if (binding == null)
                 continue;
 
@@ -166,17 +171,14 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
             float smoothAmount =
                 1f - Mathf.Exp(-binding.followSpeed * Time.deltaTime);
 
+            //Move position
             binding.rigTarget.position =
                 Vector3.Lerp(binding.rigTarget.position, targetPosition, smoothAmount);
 
+            //Move rotation
             if (binding.copyRotation)
             {
-                // Vector3 currentEuler = binding.rigTarget.rotation.eulerAngles;
-                // Vector3 targetEuler = targetRotation.eulerAngles; 
-                // float newX = Mathf.LerpAngle (currentEuler.x,targetEuler.x,smoothAmount);
-                // float newY = Mathf.LerpAngle (currentEuler.y,targetEuler.y,smoothAmount);
-                // binding.rigTarget.rotation =
-                // //     Quaternion.Slerp(binding.rigTarget.rotation, targetRotation, smoothAmount);
+
                 binding.rigTarget.rotation =
                     Quaternion.Slerp(binding.rigTarget.rotation, targetRotation, smoothAmount);
                     
@@ -187,121 +189,3 @@ public class MultiARMarkersToRigTargets : MonoBehaviour
         }
     }
 }
-
-// using UnityEngine;
-// using UnityEngine.XR.ARFoundation;
-// using UnityEngine.XR.ARSubsystems;
-
-// public class ARTrackedImageToIKTarget : MonoBehaviour
-// {
-//     [Header("AR Foundation")]
-//     public ARTrackedImageManager trackedImageManager;
-
-//     [Tooltip("Leave empty to accept any tracked image.")]
-//     public string targetReferenceImageName = "";
-
-//     [Header("Animation Rigging")]
-//     public Transform leftHandIKTarget;
-
-//     [Header("Offsets")]
-//     public Vector3 positionOffset;
-//     public Vector3 rotationOffsetEuler;
-
-//     [Header("Debug")]
-//     public bool printDebugLogs = true;
-
-//     private ARTrackedImage currentTrackedImage;
-//     private bool markerIsTracking;
-
-//     private void OnEnable()
-//     {
-//         if (trackedImageManager == null)
-//         {
-//             Debug.LogError("ARTrackedImageToIKTarget: Tracked Image Manager is not assigned.");
-//             return;
-//         }
-
-//         trackedImageManager.trackablesChanged.AddListener(OnTrackedImagesChanged);
-
-//         if (printDebugLogs)
-//             Debug.Log("ARTrackedImageToIKTarget: Listening for tracked images.");
-//     }
-
-//     private void OnDisable()
-//     {
-//         if (trackedImageManager != null)
-//             trackedImageManager.trackablesChanged.RemoveListener(OnTrackedImagesChanged);
-//     }
-
-//     private void OnTrackedImagesChanged(
-//         ARTrackablesChangedEventArgs<ARTrackedImage> eventArgs)
-//     {
-//         foreach (ARTrackedImage image in eventArgs.added)
-//         {
-//             TryUseTrackedImage(image, "ADDED");
-//         }
-
-//         foreach (ARTrackedImage image in eventArgs.updated)
-//         {
-//             TryUseTrackedImage(image, "UPDATED");
-//         }
-//     }
-
-//     private void TryUseTrackedImage(ARTrackedImage image, string eventType)
-//     {
-//         string detectedName = image.referenceImage.name;
-
-//         if (!string.IsNullOrEmpty(targetReferenceImageName) &&
-//             detectedName != targetReferenceImageName)
-//         {
-//             if (printDebugLogs)
-//             {
-//                 Debug.Log(
-//                     $"Image ignored. Detected '{detectedName}', but script expects '{targetReferenceImageName}'.");
-//             }
-
-//             return;
-//         }
-
-//         currentTrackedImage = image;
-//         markerIsTracking = image.trackingState == TrackingState.Tracking;
-
-//         if (printDebugLogs)
-//         {
-//             Debug.Log(
-//                 $"Image {eventType}: {detectedName}, State: {image.trackingState}, Position: {image.transform.position}");
-//         }
-//     }
-
-//     private void Update()
-//     {
-//         if (leftHandIKTarget == null)
-//         {
-//             Debug.LogError("ARTrackedImageToIKTarget: Left Hand IK Target is not assigned.");
-//             return;
-//         }
-
-//         if (currentTrackedImage == null)
-//             return;
-
-//         if (!markerIsTracking)
-//             return;
-
-//         Transform markerTransform = currentTrackedImage.transform;
-
-//         Vector3 targetPosition = markerTransform.TransformPoint(positionOffset);
-
-//         Quaternion targetRotation =
-//             markerTransform.rotation * Quaternion.Euler(rotationOffsetEuler);
-
-//         // Direct movement for debugging.
-//         leftHandIKTarget.position = targetPosition;
-//         leftHandIKTarget.rotation = targetRotation;
-
-//         if (printDebugLogs)
-//         {
-//             Debug.Log(
-//                 $"Moving IK Target to marker position: {targetPosition}");
-//         }
-//     }
-// }

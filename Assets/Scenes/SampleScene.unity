@@ -1296,7 +1296,52 @@ MonoBehaviour:
     rigTarget: {fileID: 0}
     positionOffset: {x: 0, y: 0, z: 0}
     rotationOffsetEuler: {x: 0, y: 0, z: 0}
-    followSpeed: 0
+    followSpeed: 35
+    copyRotation: 1
+    isTracking: 0
+    trackedPosition: {x: 0, y: 0, z: 0}
+    trackedRotation: {x: 0, y: 0, z: 0, w: 0}
+  - markerID: 6
+    rigTarget: {fileID: 0}
+    positionOffset: {x: 0, y: 0, z: 0}
+    rotationOffsetEuler: {x: 0, y: 0, z: 0}
+    followSpeed: 35
+    copyRotation: 0
+    isTracking: 0
+    trackedPosition: {x: 0, y: 0, z: 0}
+    trackedRotation: {x: 0, y: 0, z: 0, w: 0}
+  - markerID: 8
+    rigTarget: {fileID: 0}
+    positionOffset: {x: 0, y: 0, z: 0}
+    rotationOffsetEuler: {x: 0, y: 0, z: 0}
+    followSpeed: 35
+    copyRotation: 0
+    isTracking: 0
+    trackedPosition: {x: 0, y: 0, z: 0}
+    trackedRotation: {x: 0, y: 0, z: 0, w: 0}
+  - markerID: 9
+    rigTarget: {fileID: 0}
+    positionOffset: {x: 0, y: 0, z: 0}
+    rotationOffsetEuler: {x: 0, y: 0, z: 0}
+    followSpeed: 35
+    copyRotation: 0
+    isTracking: 0
+    trackedPosition: {x: 0, y: 0, z: 0}
+    trackedRotation: {x: 0, y: 0, z: 0, w: 0}
+  - markerID: 11
+    rigTarget: {fileID: 0}
+    positionOffset: {x: 0, y: 0, z: 0}
+    rotationOffsetEuler: {x: 0, y: 0, z: 0}
+    followSpeed: 35
+    copyRotation: 0
+    isTracking: 0
+    trackedPosition: {x: 0, y: 0, z: 0}
+    trackedRotation: {x: 0, y: 0, z: 0, w: 0}
+  - markerID: 12
+    rigTarget: {fileID: 0}
+    positionOffset: {x: 0, y: 0, z: 0}
+    rotationOffsetEuler: {x: 0, y: 0, z: 0}
+    followSpeed: 35
     copyRotation: 0
     isTracking: 0
     trackedPosition: {x: 0, y: 0, z: 0}

@@ -138,15 +138,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::markertorig
   MarkerRigList:
-  - markerName: leftArm
+  - markerName: 6
     RigTarget: {fileID: 6913503175279590171}
-  - markerName: rightArm
+  - markerName: 8
     RigTarget: {fileID: 6075508564932665240}
-  - markerName: LeftLegMarker
+  - markerName: 9
     RigTarget: {fileID: 6353944908949752181}
-  - markerName: RightLegMarker
+  - markerName: 12
     RigTarget: {fileID: 8293602997472614848}
-  - markerName: SelfMarker
+  - markerName: 14
     RigTarget: {fileID: 1156484021513193382}
 --- !u!1 &1583038398136997757
 GameObject:

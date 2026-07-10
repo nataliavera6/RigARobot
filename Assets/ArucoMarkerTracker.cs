@@ -232,26 +232,100 @@ public class ArucoMarkerTracker : MonoBehaviour
         foreach (Mat rejectedCorner in rejected)
             rejectedCorner.Dispose();
     }
-
     private void RegisterTrackedMarker(int markerID, Mat markerCorners)
+{
+    if (!bindingByMarkerID.TryGetValue(markerID, out MarkerRigBinding binding))
     {
-        if (!bindingByMarkerID.TryGetValue(markerID, out MarkerRigBinding binding))
-        {
-            Debug.LogWarning("No binding found for ArUco marker ID: " + markerID);
-            return;
-        }
-
-        if (!TryEstimateMarkerPose(markerCorners, out Vector3 position, out Quaternion rotation))
-        {
-            binding.isTracking = false;
-            Debug.LogWarning("Pose estimation failed for marker ID: " + markerID);
-            return;
-        }
-
-        binding.trackedPosition = position;
-        binding.trackedRotation = rotation;
-        binding.isTracking = true;
+        Debug.LogWarning("No binding found for ArUco marker ID: " + markerID);
+        return;
     }
+
+    if (!TryEstimateMarkerPose(
+            markerCorners,
+            out Vector3 cameraLocalPosition,
+            out Quaternion cameraLocalRotation))
+    {
+        binding.isTracking = false;
+        return;
+    }
+
+    Transform cameraTransform = arCameraManager.transform;
+
+    // Correct the 90-degree difference between the CPU camera image
+    // and Unity's camera coordinate system.
+    Quaternion imageOrientationCorrection =
+        Quaternion.Euler(0f, 0f, -90f);
+
+    Vector3 correctedLocalPosition =
+        imageOrientationCorrection * cameraLocalPosition;
+
+    Quaternion correctedLocalRotation =
+        imageOrientationCorrection * cameraLocalRotation;
+
+    // Convert camera-local pose to Unity world space.
+    binding.trackedPosition =
+        cameraTransform.TransformPoint(correctedLocalPosition);
+
+    binding.trackedRotation =
+        cameraTransform.rotation * correctedLocalRotation;
+
+    binding.isTracking = true;
+}
+    // private void RegisterTrackedMarker(int markerID, Mat markerCorners)
+    // {
+    //     if (!bindingByMarkerID.TryGetValue(markerID, out MarkerRigBinding binding))
+    //     {
+    //         Debug.LogWarning("No binding found for ArUco marker ID: " + markerID);
+    //         return;
+    //     }
+
+    //     if (!TryEstimateMarkerPose(
+    //             markerCorners,
+    //             out Vector3 cameraLocalPosition,
+    //             out Quaternion cameraLocalRotation))
+    //     {
+    //         binding.isTracking = false;
+    //         Debug.LogWarning("Pose estimation failed for marker ID: " + markerID);
+    //         return;
+    //     }
+
+    //     Transform cameraTransform = arCameraManager.transform;
+
+    //     // OpenCV returns the marker pose relative to the camera.
+    //     // Convert that pose into Unity world space.
+    //     binding.trackedPosition =
+    //         cameraTransform.TransformPoint(cameraLocalPosition);
+
+    //     binding.trackedRotation =
+    //         cameraTransform.rotation * cameraLocalRotation;
+
+    //     binding.isTracking = true;
+
+    //     Debug.Log(
+    //         $"Marker {markerID} | " +
+    //         $"Camera local: {cameraLocalPosition} | " +
+    //         $"World: {binding.trackedPosition}"
+    //     );
+    // }
+    // private void RegisterTrackedMarker(int markerID, Mat markerCorners)
+    // {
+    //     if (!bindingByMarkerID.TryGetValue(markerID, out MarkerRigBinding binding))
+    //     {
+    //         Debug.LogWarning("No binding found for ArUco marker ID: " + markerID);
+    //         return;
+    //     }
+
+    //     if (!TryEstimateMarkerPose(markerCorners, out Vector3 position, out Quaternion rotation))
+    //     {
+    //         binding.isTracking = false;
+    //         Debug.LogWarning("Pose estimation failed for marker ID: " + markerID);
+    //         return;
+    //     }
+
+    //     binding.trackedPosition = position;
+    //     binding.trackedRotation = rotation;
+    //     binding.isTracking = true;
+    // }
 
     private void MoveRigTargets()
     {
@@ -277,7 +351,7 @@ public class ArucoMarkerTracker : MonoBehaviour
 
             binding.rigTarget.position =
                 Vector3.Lerp(binding.rigTarget.position, targetPosition, smoothAmount);
-
+            // binding.rigTarget.position = targetPosition;
             if (binding.copyRotation)
             {
                 binding.rigTarget.rotation =
@@ -400,7 +474,6 @@ public class ArucoMarkerTracker : MonoBehaviour
 
         return new Vector3(x, -y, z);
     }
-
     private Quaternion ConvertOpenCVRotationToUnity(double[] rvec)
     {
         Mat rvecMat = new Mat(3, 1, CvType.CV_64FC1);
@@ -412,23 +485,39 @@ public class ArucoMarkerTracker : MonoBehaviour
         double[] r = new double[9];
         rotationMatrix.get(0, 0, r);
 
+        /*
+        * OpenCV:
+        * X = right
+        * Y = down
+        * Z = forward
+        *
+        * Unity:
+        * X = right
+        * Y = up
+        * Z = forward
+        *
+        * We must flip Y on both sides of the rotation matrix.
+        */
         Matrix4x4 matrix = Matrix4x4.identity;
 
-        matrix.m00 = (float)r[0];
-        matrix.m01 = (float)r[1];
-        matrix.m02 = (float)r[2];
+        matrix.m00 =  (float)r[0];
+        matrix.m01 = -(float)r[1];
+        matrix.m02 =  (float)r[2];
 
-        matrix.m10 = (float)-r[3];
-        matrix.m11 = (float)-r[4];
-        matrix.m12 = (float)-r[5];
+        matrix.m10 = -(float)r[3];
+        matrix.m11 =  (float)r[4];
+        matrix.m12 = -(float)r[5];
 
-        matrix.m20 = (float)r[6];
-        matrix.m21 = (float)r[7];
-        matrix.m22 = (float)r[8];
+        matrix.m20 =  (float)r[6];
+        matrix.m21 = -(float)r[7];
+        matrix.m22 =  (float)r[8];
+
+        Vector3 forward = matrix.GetColumn(2);
+        Vector3 up = matrix.GetColumn(1);
 
         Quaternion rotation = Quaternion.LookRotation(
-            matrix.GetColumn(2),
-            matrix.GetColumn(1)
+            forward.normalized,
+            up.normalized
         );
 
         rvecMat.Dispose();
@@ -436,6 +525,41 @@ public class ArucoMarkerTracker : MonoBehaviour
 
         return rotation;
     }
+    // private Quaternion ConvertOpenCVRotationToUnity(double[] rvec)
+    // {
+    //     Mat rvecMat = new Mat(3, 1, CvType.CV_64FC1);
+    //     rvecMat.put(0, 0, rvec);
+
+    //     Mat rotationMatrix = new Mat();
+    //     Calib3d.Rodrigues(rvecMat, rotationMatrix);
+
+    //     double[] r = new double[9];
+    //     rotationMatrix.get(0, 0, r);
+
+    //     Matrix4x4 matrix = Matrix4x4.identity;
+
+    //     matrix.m00 = (float)r[0];
+    //     matrix.m01 = (float)r[1];
+    //     matrix.m02 = (float)r[2];
+
+    //     matrix.m10 = (float)-r[3];
+    //     matrix.m11 = (float)-r[4];
+    //     matrix.m12 = (float)-r[5];
+
+    //     matrix.m20 = (float)r[6];
+    //     matrix.m21 = (float)r[7];
+    //     matrix.m22 = (float)r[8];
+
+    //     Quaternion rotation = Quaternion.LookRotation(
+    //         matrix.GetColumn(2),
+    //         matrix.GetColumn(1)
+    //     );
+
+    //     rvecMat.Dispose();
+    //     rotationMatrix.Dispose();
+
+    //     return rotation;
+    // }
 
     public void setRigTargets(Dictionary<int, Transform> newTargets)
     {
