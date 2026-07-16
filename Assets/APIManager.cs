@@ -10,7 +10,7 @@ public class APIManager : MonoBehaviour
 {
     [SerializeField] private string gasURL;
     [SerializeField] private string prompt;
-
+    private string answer = null;
     private void Awake()
     {
         Debug.Log("APIManager Awake");
@@ -24,7 +24,16 @@ public class APIManager : MonoBehaviour
 
         StartCoroutine(SendDataToGAS());
     }
+    public void SendPrompt(string Prompt)
+    {
+        Debug.Log("SendReq called");
+        prompt = Prompt;
+        StartCoroutine(SendDataToGAS());
 
+    }
+    public string getPrompt(){
+        return answer;
+    }
     private IEnumerator SendDataToGAS()
     {
         Debug.Log("Coroutine started");
@@ -41,8 +50,8 @@ public class APIManager : MonoBehaviour
             yield break;
         }
 
-        Debug.Log("Sending request to: " + gasURL);
-        Debug.Log("Prompt : " + prompt);
+        // Debug.Log("Sending request to: " + gasURL);
+        // Debug.Log("Prompt : " + prompt);
 
         WWWForm form = new WWWForm();
         form.AddField("parameter", prompt);
@@ -51,10 +60,10 @@ public class APIManager : MonoBehaviour
             UnityWebRequest.Post(gasURL, form);
 
         yield return www.SendWebRequest();
-
+        answer = www.downloadHandler.text;
         Debug.Log("HTTP code: " + www.responseCode);
-        Debug.Log("Response: " + www.downloadHandler.text);
-
+        Debug.Log("Response: " + answer);
+        
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError(
@@ -62,6 +71,7 @@ public class APIManager : MonoBehaviour
             );
         }
     }
+
 }
 // public class APIManager : MonoBehaviour
 // {
