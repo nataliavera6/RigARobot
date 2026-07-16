@@ -25,6 +25,15 @@ public class ArucoMarkerTracker : MonoBehaviour
     [System.Serializable]
     public class MarkerRigBinding
     {
+       public float positionSmoothTime = 0.05f;
+        public float rotationFollowSpeed = 1f;
+
+        public float positionDeadZone = 0.002f;
+        public float rotationDeadZone = 1.5f;
+
+        [HideInInspector]
+        public Vector3 positionVelocity;
+
         [Header("Marker")]
         [Tooltip("Must match the ArUco marker ID.")]
         public int markerID;
@@ -43,6 +52,10 @@ public class ArucoMarkerTracker : MonoBehaviour
         [HideInInspector] public bool isTracking;
         [HideInInspector] public Vector3 trackedPosition;
         [HideInInspector] public Quaternion trackedRotation;
+
+  
+        [Tooltip("is Body")]
+        public bool isbody;
     }
 
     [Header("AR Foundation")]
@@ -67,7 +80,7 @@ public class ArucoMarkerTracker : MonoBehaviour
     private CvDictionary arucoDictionary;
     private DetectorParameters detectorParameters;
     private ArucoDetector arucoDetector;
-
+    private float nextDetectionTime;
     private void Awake()
     {
         BuildBindingDictionary();
@@ -92,17 +105,27 @@ public class ArucoMarkerTracker : MonoBehaviour
             }
             else
             {
-                Debug.LogWarning("Duplicate marker ID found: " + binding.markerID);
+                //Debug.LogWarning("Duplicate marker ID found: " + binding.markerID);
             }
         }
     }
 
     private void Update()
     {
-        DetectArucoMarkers();
-        MoveRigTargets();
-    }
+           if (Time.unscaledTime >= nextDetectionTime)
+    {
+        nextDetectionTime =
+            Time.unscaledTime + (1f / 15f);
 
+        DetectArucoMarkers();
+    }
+        // DetectArucoMarkers();
+        // MoveRigTargets();
+    }
+private void LateUpdate()
+{
+    MoveRigTargets();
+}
     private void DetectArucoMarkers()
     {
         if (arCameraManager == null)
@@ -189,11 +212,11 @@ public class ArucoMarkerTracker : MonoBehaviour
         buffer.Dispose();
         }
 
-        foreach (MarkerRigBinding binding in bindings)
-        {
-            if (binding != null)
-                binding.isTracking = false;
-        }
+        // foreach (MarkerRigBinding binding in bindings)
+        // {
+        //     if (binding != null)
+        //         binding.isTracking = false;
+        // }
 
         List<Mat> corners = new List<Mat>();
         Mat ids = new Mat();
@@ -206,8 +229,8 @@ public class ArucoMarkerTracker : MonoBehaviour
         // Detect markers using the grayscale image.
         arucoDetector.detectMarkers(grayMat, corners, ids, rejected);
 
-        Debug.Log("Detected marker count: " + ids.rows());
-        Debug.Log("Rejected marker candidates: " + rejected.Count);
+        // Debug.Log("Detected marker count: " + ids.rows());
+        // Debug.Log("Rejected marker candidates: " + rejected.Count);
 
         // Release the temporary grayscale image.
         grayMat.Dispose();
@@ -218,7 +241,7 @@ public class ArucoMarkerTracker : MonoBehaviour
             {
                 int markerID = (int)ids.get(i, 0)[0];
 
-                Debug.Log("Detected ArUco ID: " + markerID);
+                // Debug.Log("Detected ArUco ID: " + markerID);
 
                 RegisterTrackedMarker(markerID, corners[i]);
             }
@@ -236,7 +259,7 @@ public class ArucoMarkerTracker : MonoBehaviour
 {
     if (!bindingByMarkerID.TryGetValue(markerID, out MarkerRigBinding binding))
     {
-        Debug.LogWarning("No binding found for ArUco marker ID: " + markerID);
+        // Debug.LogWarning("No binding found for ArUco marker ID: " + markerID);
         return;
     }
 
@@ -326,43 +349,125 @@ public class ArucoMarkerTracker : MonoBehaviour
     //     binding.trackedRotation = rotation;
     //     binding.isTracking = true;
     // }
+    // var float prevRotation = 0f;
+
+
+
+
 
     private void MoveRigTargets()
+{
+    foreach (MarkerRigBinding binding in bindings)
     {
-        foreach (MarkerRigBinding binding in bindings)
+        if (binding == null)
+            continue;
+
+        if (binding.rigTarget == null)
+            continue;
+
+        if (!binding.isTracking)
+            continue;
+
+        Vector3 targetPosition =
+            binding.trackedPosition +
+            binding.trackedRotation * binding.positionOffset;
+
+        Quaternion targetRotation =
+            binding.trackedRotation *
+            Quaternion.Euler(binding.rotationOffsetEuler);
+
+        // POSITION
+        float positionDifference = Vector3.Distance(
+            binding.rigTarget.position,
+            targetPosition
+        );
+        float smoothAmount = 1f - Mathf.Exp(-binding.followSpeed * Time.deltaTime);
+        binding.rigTarget.position= GetFilteredPos(binding.trackedPosition,targetPosition, 0.10f);
+        // // Ignore extremely small marker movements.
+        // if (positionDifference > binding.positionDeadZone)
+        // {
+        //     binding.rigTarget.position = Vector3.SmoothDamp(
+        //         binding.rigTarget.position,
+        //         targetPosition,
+        //         ref binding.positionVelocity,
+        //         binding.positionSmoothTime
+        //     );
+        // }
+
+        // ROTATION
+        if (binding.copyRotation)
         {
-            if (binding == null)
-                continue;
-
-            if (binding.rigTarget == null)
-                continue;
-
-            if (!binding.isTracking)
-                continue;
-
-            Vector3 targetPosition =
-                binding.trackedPosition + binding.trackedRotation * binding.positionOffset;
-
-            Quaternion targetRotation =
-                binding.trackedRotation * Quaternion.Euler(binding.rotationOffsetEuler);
-
-            float smoothAmount =
-                1f - Mathf.Exp(-binding.followSpeed * Time.deltaTime);
-
-            binding.rigTarget.position =
-                Vector3.Lerp(binding.rigTarget.position, targetPosition, smoothAmount);
-            // binding.rigTarget.position = targetPosition;
-            if (binding.copyRotation)
-            {
-                binding.rigTarget.rotation =
-                    Quaternion.Slerp(binding.rigTarget.rotation, targetRotation, smoothAmount);
-            }
-
-            Debug.Log(
-                $"Marker ID: {binding.markerID}, Position: {targetPosition}, Rotation: {targetRotation.eulerAngles}"
+            float rotationDifference = Quaternion.Angle(
+                binding.rigTarget.rotation,
+                targetRotation
             );
+
+            // Ignore extremely small rotational noise.
+            if (rotationDifference > binding.rotationDeadZone)
+            {
+                float rotationAmount =
+                    1f - Mathf.Exp(
+                        -binding.rotationFollowSpeed *
+                        Time.deltaTime
+                    );
+
+                binding.rigTarget.rotation =
+                    Quaternion.Slerp(
+                        binding.rigTarget.rotation,
+                        targetRotation,
+                        rotationAmount
+                    );
+            }
+            //       Debug.Log(
+            //     $"Marker ID: {binding.markerID}, Position: {binding.rigTarget.position}, Rotation: {targetRotation.eulerAngles}"
+            // );
         }
+            // Debug.Log(
+            //     $"Marker ID: {binding.markerID}, Position : {binding.rigTarget.position}"
+            // );
     }
+}
+    // private void MoveRigTargets()
+    // {
+        
+    //     foreach (MarkerRigBinding binding in bindings)
+    //     {
+
+    //         if (binding == null)
+    //             continue;
+
+    //         if (binding.rigTarget == null)
+    //             continue;
+
+    //         if (!binding.isTracking)
+    //             continue;
+
+    //         Vector3 targetPosition =
+    //             binding.trackedPosition + binding.trackedRotation * binding.positionOffset;
+
+    //         Quaternion targetRotation =
+    //             binding.trackedRotation * Quaternion.Euler(binding.rotationOffsetEuler);
+            
+    //         float smoothAmount =
+    //             1f - Mathf.Exp(-binding.followSpeed * Time.deltaTime);
+
+    //         binding.rigTarget.position =
+    //             Vector3.Lerp(binding.rigTarget.position, targetPosition, smoothAmount);
+    //         // binding.rigTarget.position = targetPosition;
+    //         if (binding.copyRotation)
+    //         {
+
+    //             binding.rigTarget.rotation =
+    //                 Quaternion.Slerp(binding.rigTarget.rotation, targetRotation, smoothAmount);
+    //         }
+
+    //         Debug.Log(
+    //             $"Marker ID: {binding.markerID}, Position: {targetPosition}, Rotation: {targetRotation.eulerAngles}"
+    //         );
+
+            
+    //     }
+    // }
 
     private bool TryEstimateMarkerPose(
         Mat markerCorners,
@@ -589,6 +694,10 @@ public class ArucoMarkerTracker : MonoBehaviour
                 Debug.LogWarning("No ArUco binding exists for marker ID: " + markerID);
             }
         }
+    }
+    private Vector3 GetFilteredPos(Vector3 prev,Vector3 cur,float smooth){
+            Vector3 result = (smooth * cur)+((1f-smooth)*prev);
+            return result;
     }
 
     private void OnDestroy()

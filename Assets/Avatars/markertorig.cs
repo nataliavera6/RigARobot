@@ -6,6 +6,7 @@ public class markertorig : MonoBehaviour
     public class MarkertoRig{
         public int markerName;
         public Transform RigTarget; 
+        
     }
 
     public List<MarkertoRig> MarkerRigList = new List<MarkertoRig>();

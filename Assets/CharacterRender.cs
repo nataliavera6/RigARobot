@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
-
+using UnityEngine.SceneManagement;
 public class CharacterRender : MonoBehaviour
 {
     public GameObject[] characterPrefab; // The character prefab to instantiate
@@ -13,6 +13,10 @@ public class CharacterRender : MonoBehaviour
     private GameObject currentCharacter;
     public ArucoMarkerTracker markerRigController;
     public ArucoMarkerTracker markerRigController22;
+
+
+    [HideInInspector]
+    public Vector3 positionVelocity;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -56,5 +60,8 @@ public class CharacterRender : MonoBehaviour
         Dictionary<int, Transform> dictionary=currentCharacter.GetComponentInChildren<markertorig>().getRigtoMarkerSetup();
         markerRigController.setRigTargets(dictionary);
   
+    }
+    public void switchScenee(){
+        SceneManager.LoadScene(1);
     }
 }
