@@ -8,21 +8,39 @@ public class Messages : MonoBehaviour
 {
     // [SerializeField] private InputField  inputField;
     [SerializeField] private GameObject Message;
+    [SerializeField] public TMP_InputField inputField;
     [SerializeField] private Transform Content;
     [SerializeField] private APIManager chat;
 
     public void SendMessagePrompt(){
-        chat.SendPrompt("what is 6 + 4?");
-        string answer = chat.getPrompt();
-        GetMessage(answer);
+        string prompt = inputField.text;
+        
+        
+      
+        if (!string.IsNullOrWhiteSpace(prompt)){
+            GetMessage(prompt);
+            chat.SendPrompt(prompt,GetMessage);
+            // result = chat.getPrompt();
+
+            
+        }else{
+            // GetMessage("please write me a message");
+            GetMessage("please write me a messagellllllddddddddddddddplease write me a messagellllllddddddddddddddplease write me a messagellllllddddddddddddddplease write me a messagelllllldddddddddddddd");
+        }
+        // Debug.Log("answered message"+result+".");
+        
+        
     }
 
     public void GetMessage(string RecieveMessage){
         GameObject newAnswer = Instantiate(Message,Content);
         TextMeshProUGUI childText = newAnswer.GetComponentInChildren<TextMeshProUGUI>();
-        if (childText!=null){
+        if (!string.IsNullOrWhiteSpace(RecieveMessage) && childText!=null){
             childText.text = RecieveMessage;
+        }else{
+            Debug.Log("null text");
         }
+        Debug.Log("messagee"+RecieveMessage+".");
         
     }
 

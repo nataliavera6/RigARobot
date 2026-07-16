@@ -1,40 +1,44 @@
 using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Networking;
-using System.Collections;
-using UnityEngine;
-using UnityEngine.Networking;
+
+
+
 
 public class APIManager : MonoBehaviour
 {
     [SerializeField] private string gasURL;
     [SerializeField] private string prompt;
-    private string answer = null;
+    private string answer;
     private void Awake()
     {
-        Debug.Log("APIManager Awake");
+        // Debug.Log("APIManager Awake");
 
-        StartCoroutine(SendDataToGAS());
+        // StartCoroutine(SendDataToGAS());
     }
 
-    public void SendReq()
-    {
-        Debug.Log("SendReq called");
+    // public void SendReq()
+    // {
+    //     Debug.Log("SendReq called");
 
-        StartCoroutine(SendDataToGAS());
-    }
-    public void SendPrompt(string Prompt)
+    //     StartCoroutine(SendDataToGAS());
+    // }
+    public void SendPrompt(string Prompt, Action<string>OnCompleted)
     {
         Debug.Log("SendReq called");
         prompt = Prompt;
-        StartCoroutine(SendDataToGAS());
+        StartCoroutine(SendDataToGAS(OnCompleted));
 
     }
     public string getPrompt(){
         return answer;
     }
-    private IEnumerator SendDataToGAS()
+    public void setPrompt(string Answer){
+        answer = Answer;
+    }
+    private IEnumerator SendDataToGAS(Action<string>OnCompleted)
     {
         Debug.Log("Coroutine started");
 
@@ -63,7 +67,8 @@ public class APIManager : MonoBehaviour
         answer = www.downloadHandler.text;
         Debug.Log("HTTP code: " + www.responseCode);
         Debug.Log("Response: " + answer);
-        
+        OnCompleted?.Invoke(answer);
+        setPrompt(answer);
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError(
