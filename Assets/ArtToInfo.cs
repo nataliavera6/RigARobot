@@ -82,10 +82,12 @@ public class ArtToInfo : MonoBehaviour
             Debug.LogError("Button Parent is not assigned.");
             return;
         }
-
-        foreach (ArtPiece piece in art)
+        foreach (string identifiedName in IdentifiedArt.Instance.pieces)
+        // foreach (ArtPiece piece in art)
         {
-            if (piece == null || piece.image == null)
+            Debug.Log("piece in list"+ identifiedName);
+            artInfo.TryGetValue(identifiedName, out Sprite piece);
+            if (piece == null || piece == null)
             {
                 continue;
             }
@@ -95,16 +97,17 @@ public class ArtToInfo : MonoBehaviour
                 buttonParent
             );
 
-            newButton.image.sprite = piece.image;
+            newButton.image.sprite = piece;
 
-            string paintingName = piece.name;
+            string paintingName = identifiedName
+            ;
 
             newButton.onClick.AddListener(() =>
             {
                 SelectPainting(paintingName);
             });
 
-            Debug.Log("Loaded artwork: " + paintingName);
+            Debug.LogWarning("Loaded artwork: " + paintingName);
         }
     }
 
@@ -115,6 +118,7 @@ public class ArtToInfo : MonoBehaviour
         if (AI != null)
         {
             AI.chooseAnArt(currentPainting);
+            
         }
         else
         {
