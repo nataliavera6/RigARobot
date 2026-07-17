@@ -23,8 +23,8 @@ public class GrowMessageBubble : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (text.preferredWidth>700){
-                layout.preferredWidth = 700f;
+        if (text.preferredWidth>3100){
+                layout.preferredWidth = 3100f;
                 
                 parentContent.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
                 // verticalExpand.childForceExpandWidth=false;

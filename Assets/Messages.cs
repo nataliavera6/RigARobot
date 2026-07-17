@@ -25,7 +25,7 @@ public class Messages : MonoBehaviour
             
         }else{
             // GetMessage("please write me a message");
-            GetMessage("please write me a messagellllllddddddddddddddplease write me a messagellllllddddddddddddddplease write me a messagellllllddddddddddddddplease write me a messagelllllldddddddddddddd");
+            GetMessage("please write me a message");
         }
         // Debug.Log("answered message"+result+".");
         
@@ -40,7 +40,7 @@ public class Messages : MonoBehaviour
         }else{
             Debug.Log("null text");
         }
-        Debug.Log("messagee"+RecieveMessage+".");
+        Debug.Log("message"+RecieveMessage+".");
         
     }
 

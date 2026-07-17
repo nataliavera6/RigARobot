@@ -10,7 +10,9 @@ using UnityEngine.Networking;
 public class APIManager : MonoBehaviour
 {
     [SerializeField] private string gasURL;
-    [SerializeField] private string prompt;
+    [SerializeField] public string prompt;
+    [SerializeField] private GameObject currentArt;
+    public string fullprompt;
     private string answer;
     private void Awake()
     {
@@ -38,8 +40,15 @@ public class APIManager : MonoBehaviour
     public void setPrompt(string Answer){
         answer = Answer;
     }
+
+    public void chooseAnArt(string art){
+
+        fullprompt = "You are a museum guide.Rules:Only answer questions about the artworks in the museum.If asked about anything else, reply:I can only answer questions about the artworks in this exhibit.Do not discuss politics, religion, medical advice, legal advice, or personal opinions.Keep answers under 100 words.talk about this art piece:"+art+"question:"+prompt;
+        Debug.Log("prompt from chooseanart"+fullprompt);
+    }
     private IEnumerator SendDataToGAS(Action<string>OnCompleted)
     {
+
         Debug.Log("Coroutine started");
 
         if (string.IsNullOrWhiteSpace(gasURL))
@@ -48,17 +57,17 @@ public class APIManager : MonoBehaviour
             yield break;
         }
 
-        if (string.IsNullOrWhiteSpace(prompt))
+        if (string.IsNullOrWhiteSpace(fullprompt))
         {
             Debug.LogError("Prompt is empty in the Inspector.");
             yield break;
         }
 
-        // Debug.Log("Sending request to: " + gasURL);
-        // Debug.Log("Prompt : " + prompt);
+        Debug.Log("Sending request to: " + gasURL);
+        Debug.Log("full Prompt : " + fullprompt);
 
         WWWForm form = new WWWForm();
-        form.AddField("parameter", prompt);
+        form.AddField("parameter", fullprompt);
 
         using UnityWebRequest www =
             UnityWebRequest.Post(gasURL, form);
