@@ -12,13 +12,16 @@ public class Messages : MonoBehaviour
     [SerializeField] private Transform Content;
     [SerializeField] private APIManager chat;
 
+
     public void SendMessagePrompt(){
         string prompt = inputField.text;
+        inputField.text="";
         
         
       
         if (!string.IsNullOrWhiteSpace(prompt)){
             GetMessage(prompt);
+
             chat.SendPrompt(prompt,GetMessage);
             // result = chat.getPrompt();
 

@@ -99,9 +99,8 @@ public class ArtToInfo : MonoBehaviour
 
             newButton.image.sprite = piece;
 
-            string paintingName = identifiedName
-            ;
-
+            string paintingName = identifiedName;
+            
             newButton.onClick.AddListener(() =>
             {
                 SelectPainting(paintingName);
@@ -127,7 +126,12 @@ public class ArtToInfo : MonoBehaviour
 
         Debug.Log("Selected painting: " + currentPainting);
     }
-
+    public void SelectPaintingNull()
+    {
+        currentPainting = "no painting currently selected.";
+        SelectPainting(currentPainting);
+        
+    }
     public string GetCurrentPainting()
     {
         return currentPainting;

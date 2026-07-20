@@ -12,8 +12,12 @@ public class APIManager : MonoBehaviour
     [SerializeField] private string gasURL;
     [SerializeField] public string prompt;
     [SerializeField] private GameObject currentArt;
-    public string fullprompt;
+    public string fullprompt=   "You are a museum guide.Rules:Do not discuss politics, religion, medical advice, legal advice, or personal opinions.Keep answers under 100 words.Only answer the question provided.";
+    static string context = "You are a museum guide.Rules:Do not discuss politics, religion, medical advice, legal advice, or personal opinions.Keep answers under 100 words.Only answer the question provided.";
+    public string currprompt;
+    public string prevPrompts = context;
     private string answer;
+    public string piece;
     private void Awake()
     {
         // Debug.Log("APIManager Awake");
@@ -34,17 +38,31 @@ public class APIManager : MonoBehaviour
         StartCoroutine(SendDataToGAS(OnCompleted));
 
     }
-    public string getPrompt(){
+    public string getAnswer(){
         return answer;
     }
-    public void setPrompt(string Answer){
+    public void setAnswer(string Answer){
         answer = Answer;
     }
 
     public void chooseAnArt(string art){
+        piece = art;
+        //fullprompt = "You are a museum guide.Rules:Only answer questions about the artworks in the museum.If asked about anything else, reply:I can only answer questions about the artworks in this exhibit.Do not discuss politics, religion, medical advice, legal advice, or personal opinions.Keep answers under 100 words.talk about this art piece:"+art+"question:"+prompt;
+        //Debug.Log("prompt from chooseanart"+fullprompt);
+    }
+    public string getfullprompt(){
+        fullprompt += "answer context art piece:"+piece+"question:"+prompt;
+        return fullprompt;
+    }
+    public string setPrevPrompt(string prev, string question, string art, string ans ){
 
-        fullprompt = "You are a museum guide.Rules:Only answer questions about the artworks in the museum.If asked about anything else, reply:I can only answer questions about the artworks in this exhibit.Do not discuss politics, religion, medical advice, legal advice, or personal opinions.Keep answers under 100 words.talk about this art piece:"+art+"question:"+prompt;
-        Debug.Log("prompt from chooseanart"+fullprompt);
+        string result= prev + "-start question- context painting:"+art+"user:"+question+"agent response:"+ans+"-end question-";
+        return result;
+    }
+    public string setcurrPrompt(string prev, string question, string art ){
+
+        string result= "answer this Prompt : " + question + "context art piece:"+ art +"previous conversation:"+prev;
+        return result;
     }
     private IEnumerator SendDataToGAS(Action<string>OnCompleted)
     {
@@ -57,18 +75,19 @@ public class APIManager : MonoBehaviour
             yield break;
         }
 
-        if (string.IsNullOrWhiteSpace(fullprompt))
+        if (string.IsNullOrWhiteSpace(prompt))
         {
             Debug.LogError("Prompt is empty in the Inspector.");
             yield break;
         }
+        
 
         Debug.Log("Sending request to: " + gasURL);
-        Debug.Log("full Prompt : " + fullprompt);
-
+        Debug.Log("answer this Prompt : " + prompt+ "context art piece:"+piece+"previous conversation:"+prevPrompts);
+        currprompt = setcurrPrompt(prevPrompts, prompt, piece);
         WWWForm form = new WWWForm();
-        form.AddField("parameter", fullprompt);
-
+        form.AddField("parameter", currprompt);
+        
         using UnityWebRequest www =
             UnityWebRequest.Post(gasURL, form);
 
@@ -77,7 +96,10 @@ public class APIManager : MonoBehaviour
         Debug.Log("HTTP code: " + www.responseCode);
         Debug.Log("Response: " + answer);
         OnCompleted?.Invoke(answer);
-        setPrompt(answer);
+        setAnswer(answer);
+
+        prevPrompts=setPrevPrompt(prevPrompts,prompt,piece,answer);
+
         if (www.result != UnityWebRequest.Result.Success)
         {
             Debug.LogError(

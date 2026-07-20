@@ -177,19 +177,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 238294340}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.9625, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1290222674}
-  m_Father: {fileID: 1834944985}
+  m_Father: {fileID: 1482038220}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 41.822998, y: -857}
-  m_SizeDelta: {x: 790.56, y: 49}
-  m_Pivot: {x: 0, y: -1}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 49}
+  m_Pivot: {x: 1, y: 0}
 --- !u!114 &238294342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -730,7 +730,14 @@ MonoBehaviour:
   gasURL: https://script.google.com/macros/s/AKfycbzysc6QyUt6O1-UUVdrstnVRC5vdCoQHAj_PSDVcSGNPpOA8gjy56ofDP0nad33md_a/exec
   prompt: ' '
   currentArt: {fileID: 495040314}
-  fullprompt: 
+  fullprompt: You are a museum guide.Rules:Do not discuss politics, religion, medical
+    advice, legal advice, or personal opinions.Keep answers under 100 words.Only
+    answer the question provided.
+  currprompt: 
+  prevPrompts: You are a museum guide.Rules:Do not discuss politics, religion, medical
+    advice, legal advice, or personal opinions.Keep answers under 100 words.Only
+    answer the question provided.
+  piece: 
 --- !u!1 &495040314
 GameObject:
   m_ObjectHideFlags: 0
@@ -880,7 +887,7 @@ MonoBehaviour:
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 2
-  m_Spacing: 15
+  m_Spacing: -15
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
   m_ChildControlWidth: 0
@@ -914,19 +921,19 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 555508136}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 249865898}
-  m_Father: {fileID: 1834944985}
+  m_Father: {fileID: 1482038220}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 820, y: -760}
-  m_SizeDelta: {x: 66.6, y: 47}
-  m_Pivot: {x: 0, y: 1}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 93.67999, y: 49}
+  m_Pivot: {x: 1, y: 0}
 --- !u!114 &555508138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1055,7 +1062,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 5, y: -24.775166}
+  m_AnchoredPosition: {x: 5, y: -37.735676}
   m_SizeDelta: {x: 200, y: 0}
   m_Pivot: {x: 0.5, y: 0.95}
 --- !u!114 &1012720622
@@ -1238,17 +1245,19 @@ RectTransform:
   m_GameObject: {fileID: 1482038219}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1988868, y: 1.637873, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 309092119}
+  - {fileID: 238294341}
+  - {fileID: 555508137}
   m_Father: {fileID: 1834944985}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -6, y: -437}
-  m_SizeDelta: {x: 902.2, y: 504.30005}
-  m_Pivot: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0.7, y: 1}
+  m_AnchoredPosition: {x: 0, y: -100}
+  m_SizeDelta: {x: 0, y: 773}
+  m_Pivot: {x: 0.7, y: 1}
 --- !u!114 &1482038221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1762,8 +1771,6 @@ RectTransform:
   m_Children:
   - {fileID: 1903434044}
   - {fileID: 1482038220}
-  - {fileID: 238294341}
-  - {fileID: 555508137}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2256,7 +2263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 759080373999328162, guid: 1f45bc4f42fd74294826ac4151ce9417, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160
+      value: 246.9
       objectReference: {fileID: 0}
     - target: {fileID: 759080373999328162, guid: 1f45bc4f42fd74294826ac4151ce9417, type: 3}
       propertyPath: m_SizeDelta.y
@@ -2313,6 +2320,46 @@ PrefabInstance:
     - target: {fileID: 3635007743757595047, guid: 1f45bc4f42fd74294826ac4151ce9417, type: 3}
       propertyPath: m_Name
       value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253695189686034395, guid: 1f45bc4f42fd74294826ac4151ce9417, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.b
+      value: 0.3915094
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253695189686034395, guid: 1f45bc4f42fd74294826ac4151ce9417, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 0.3915094
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253695189686034395, guid: 1f45bc4f42fd74294826ac4151ce9417, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253695189686034395, guid: 1f45bc4f42fd74294826ac4151ce9417, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253695189686034395, guid: 1f45bc4f42fd74294826ac4151ce9417, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253695189686034395, guid: 1f45bc4f42fd74294826ac4151ce9417, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 495040320}
+    - target: {fileID: 6253695189686034395, guid: 1f45bc4f42fd74294826ac4151ce9417, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253695189686034395, guid: 1f45bc4f42fd74294826ac4151ce9417, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SelectPaintingNull
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253695189686034395, guid: 1f45bc4f42fd74294826ac4151ce9417, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: ArtToInfo, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6253695189686034395, guid: 1f45bc4f42fd74294826ac4151ce9417, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

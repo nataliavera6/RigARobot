@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.XR.ARFoundation;
-
+using UnityEngine.XR.ARSubsystems;
+using System.Collections.Generic;
 public class IdentifiedArt : MonoBehaviour
 {
     public static IdentifiedArt Instance;
@@ -10,7 +11,7 @@ public class IdentifiedArt : MonoBehaviour
     private ARTrackedImageManager manager;
 
     public List<string> pieces = new List<string>();
-
+    // private Dictionary<TrackableId, GameObject> spawnedPrefabs = new Dictionary<TrackableId , GameObject>();
     private void Awake()
     {
         Debug.LogError("IdentifiedArt Awake ran.");
@@ -73,13 +74,22 @@ public class IdentifiedArt : MonoBehaviour
         {
             string imageName =
                 trackedImage.referenceImage.name;
-
+            // spawnedPrefabs.Add(imageName, trackedImage.GetPrefab());
             Debug.LogError(
                 "New tracked image detected: " + imageName
             );
 
             AddItem(imageName);
         }
+        // foreach(var removedPair in changes.removed){
+
+        //     string lid = removedPair.referenceImage.name;
+        //     TrackableId id = removedPair.Key;
+        //     if(spawnedPrefabs.TryGetValue(id, out GameObject prefab)){
+        //         Destroy(prefab);
+        //         spawnedPrefabs.Remove(id);
+        //     }
+        // }
     }
 
     public void AddItem(string itemName)

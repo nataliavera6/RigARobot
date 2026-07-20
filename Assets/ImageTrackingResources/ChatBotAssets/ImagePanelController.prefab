@@ -83,7 +83,7 @@ PrefabInstance:
     - target: {fileID: 4240604257352941572, guid: 97aafa5e73c594630a7a82484d8fae54, type: 3}
       propertyPath: panelPrefab
       value: 
-      objectReference: {fileID: 919132149155446097, guid: 42cc4ee02b717447d9ebd4fb34d179a2, type: 3}
+      objectReference: {fileID: 7993096207988165646, guid: 00b784c07265f4246a4ef0ffaa2de490, type: 3}
     - target: {fileID: 4422995237056961868, guid: 97aafa5e73c594630a7a82484d8fae54, type: 3}
       propertyPath: m_Name
       value: imagepanelcontroller
