@@ -429,7 +429,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 331264285}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 608830356}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e1760703bbd54c04488a8d10600262ab, type: 3}
   m_Name: 
@@ -590,13 +590,25 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -1.147
       objectReference: {fileID: 0}
+    - target: {fileID: 2512387469002778329, guid: 48cb3fb68c91eb94999fd99957eb0cae, type: 3}
+      propertyPath: m_FacingDirection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2512387470319625105, guid: 48cb3fb68c91eb94999fd99957eb0cae, type: 3}
       propertyPath: m_OccludeARHitsWith2DObjects
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2512387470528047718, guid: 48cb3fb68c91eb94999fd99957eb0cae, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2512387470528047719, guid: 48cb3fb68c91eb94999fd99957eb0cae, type: 3}
       propertyPath: m_Name
       value: XR Origin (AR Rig)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2512387470528047737, guid: 48cb3fb68c91eb94999fd99957eb0cae, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2512387470528047737, guid: 48cb3fb68c91eb94999fd99957eb0cae, type: 3}
       propertyPath: m_PlanePrefab
@@ -990,6 +1002,58 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!1 &481534106
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 481534108}
+  - component: {fileID: 481534107}
+  m_Layer: 0
+  m_Name: MarkerToIKTargetScript
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &481534107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481534106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2036b2953151497fb59d0077a65af1e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MarkerToIKTargetScript
+  markerTransform: {fileID: 0}
+  leftHandIKTarget: {fileID: 0}
+  leftShoulder: {fileID: 0}
+  positionOffset: {x: 0, y: 0, z: 0}
+  rotationOffsetEuler: {x: 0, y: 0, z: 0}
+  followSpeed: 15
+  maxArmReach: 0.75
+  markerVisible: 1
+--- !u!4 &481534108
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481534106}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 369.025, y: 309.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &608830356 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2512387470528047719, guid: 48cb3fb68c91eb94999fd99957eb0cae, type: 3}
@@ -1346,10 +1410,10 @@ MonoBehaviour:
   markerLengthMeters: 0.01
   rig: {fileID: 0}
   bindings:
-  - positionSmoothTime: 0.05
-    rotationFollowSpeed: 2
-    positionDeadZone: 0.002
-    rotationDeadZone: 1.5
+  - positionSmoothTime: 0.03
+    rotationFollowSpeed: 15
+    positionDeadZone: 0.01
+    rotationDeadZone: 0.5
     positionVelocity: {x: 0, y: 0, z: 0}
     markerID: 14
     rigTarget: {fileID: 0}
@@ -3081,6 +3145,7 @@ MonoBehaviour:
   - {fileID: 2892995252556313205, guid: 2955b28fb50b14cafa0fc7505e913941, type: 3}
   - {fileID: 7954030329660270100, guid: 76c258f4fe36c4756828cc39648f1f93, type: 3}
   - {fileID: 2818734806062499326, guid: 3dfe9456da8d7424f99c5d836a220afa, type: 3}
+  - {fileID: 59432514130391127, guid: 7da65c3d39055481c8d73d1d11aab6e6, type: 3}
   position: {x: -1, y: 0, z: 0}
   rotation: {x: 0, y: 0, z: 0, w: 0}
   markerRigController: {fileID: 722588811}
@@ -6362,3 +6427,4 @@ SceneRoots:
   - {fileID: 738169861}
   - {fileID: 2019584161}
   - {fileID: 1468289320}
+  - {fileID: 481534108}

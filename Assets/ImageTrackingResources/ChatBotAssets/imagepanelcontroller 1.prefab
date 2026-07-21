@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe23e8a3d69f4cb78e8b79b62dc4401, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  namee: {fileID: 5267673206404157291, guid: 2cb30f369c62140939de64f534ac7891, type: 3}
   panelPrefab: {fileID: 501378515961325796, guid: a7941bee83e914e6da09f638661503ce, type: 3}
 --- !u!114 &5490162299285313309
 MonoBehaviour:

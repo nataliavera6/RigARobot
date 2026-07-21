@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
-using System.Collections.Generic;
+
 public class IdentifiedArt : MonoBehaviour
 {
     public static IdentifiedArt Instance;

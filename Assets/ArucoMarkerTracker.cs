@@ -28,7 +28,7 @@ public class ArucoMarkerTracker : MonoBehaviour
        public float positionSmoothTime = 0.05f;
         public float rotationFollowSpeed = 1f;
 
-        public float positionDeadZone = 0.002f;
+        public float positionDeadZone = 0.01f;
         public float rotationDeadZone = 1.5f;
 
         [HideInInspector]
@@ -112,20 +112,22 @@ public class ArucoMarkerTracker : MonoBehaviour
 
     private void Update()
     {
-           if (Time.unscaledTime >= nextDetectionTime)
-    {
-        nextDetectionTime =
-            Time.unscaledTime + (1f / 15f);
-
         DetectArucoMarkers();
+        MoveRigTargets();
+    // if (Time.unscaledTime >= nextDetectionTime)
+    // {
+    //     nextDetectionTime =
+    //         Time.unscaledTime + (1f / 30f);
+
+    //     // DetectArucoMarkers();
+    // }
+    //     // DetectArucoMarkers();
+    //     // MoveRigTargets();
     }
-        // DetectArucoMarkers();
-        // MoveRigTargets();
-    }
-private void LateUpdate()
-{
-    MoveRigTargets();
-}
+// private void LateUpdate()
+// {
+//     MoveRigTargets();
+// }
     private void DetectArucoMarkers()
     {
         if (arCameraManager == null)
@@ -381,17 +383,30 @@ private void LateUpdate()
             binding.rigTarget.position,
             targetPosition
         );
+        Vector3 positionChange = targetPosition - binding.rigTarget.position;
+
         float smoothAmount = 1f - Mathf.Exp(-binding.followSpeed * Time.deltaTime);
-        binding.rigTarget.position= GetFilteredPos(binding.trackedPosition,targetPosition, 0.10f);
-        // // Ignore extremely small marker movements.
+        Debug.LogError("before:"+binding.rigTarget.position);
+        //binding.rigTarget.position= GetFilteredPos(binding.trackedPosition,targetPosition, 0.10f);
+        if (Mathf.Abs(positionChange.x)<=binding.positionDeadZone){
+            targetPosition.x=binding.rigTarget.position.x;
+        }if (Mathf.Abs(positionChange.y)<=binding.positionDeadZone){
+            targetPosition.y=binding.rigTarget.position.y;
+        }if (Mathf.Abs(positionChange.z)<=binding.positionDeadZone){
+            targetPosition.z=binding.rigTarget.position.z;
+        }
+
         // if (positionDifference > binding.positionDeadZone)
         // {
-        //     binding.rigTarget.position = Vector3.SmoothDamp(
-        //         binding.rigTarget.position,
-        //         targetPosition,
-        //         ref binding.positionVelocity,
-        //         binding.positionSmoothTime
-        //     );
+            binding.rigTarget.position = Vector3.SmoothDamp(
+                binding.rigTarget.position,
+                targetPosition,
+                ref binding.positionVelocity,
+                binding.positionSmoothTime
+            );
+        //     Debug.LogError("after:"+binding.rigTarget.position);
+        // }else{
+        //     Debug.LogError("ignored");
         // }
 
         // ROTATION
