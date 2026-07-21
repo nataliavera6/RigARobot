@@ -199,7 +199,7 @@ namespace UnityEngine.XR.Templates.AR
 
         [SerializeField]
         XRInputValueReader<Vector2> m_DragCurrentPositionInput = new XRInputValueReader<Vector2>("Drag Current Position");
-
+      
         /// <summary>
         /// Input to use for the screen tap start position.
         /// </summary>
@@ -419,6 +419,7 @@ namespace UnityEngine.XR.Templates.AR
                 Destroy(child.gameObject);
             }
         }
+
 
         /// <summary>
         /// Triggers hide animation for menu.

@@ -384,26 +384,33 @@ public class ArucoMarkerTracker : MonoBehaviour
             targetPosition
         );
         Vector3 positionChange = targetPosition - binding.rigTarget.position;
-
+        //Quaternion rotationChange = targetRotation - binding.rigTarget.rotation;
         float smoothAmount = 1f - Mathf.Exp(-binding.followSpeed * Time.deltaTime);
         Debug.LogError("before:"+binding.rigTarget.position);
         //binding.rigTarget.position= GetFilteredPos(binding.trackedPosition,targetPosition, 0.10f);
-        if (Mathf.Abs(positionChange.x)<=binding.positionDeadZone){
-            targetPosition.x=binding.rigTarget.position.x;
-        }if (Mathf.Abs(positionChange.y)<=binding.positionDeadZone){
-            targetPosition.y=binding.rigTarget.position.y;
-        }if (Mathf.Abs(positionChange.z)<=binding.positionDeadZone){
-            targetPosition.z=binding.rigTarget.position.z;
-        }
+        targetPosition.x=checkDeadZone(Mathf.Abs(positionChange.x), binding.positionDeadZone, binding.rigTarget.position.x, targetPosition.x );
+        targetPosition.y=checkDeadZone(Mathf.Abs(positionChange.y), binding.positionDeadZone, binding.rigTarget.position.y, targetPosition.y );
+        targetPosition.z=checkDeadZone(Mathf.Abs(positionChange.z), binding.positionDeadZone, binding.rigTarget.position.z, targetPosition.z );
+
+        targetRotation.x=checkDeadZone(Mathf.Abs(targetRotation.x - binding.rigTarget.rotation.x), binding.rotationDeadZone, binding.rigTarget.rotation.x, targetRotation.x );
+        targetRotation.y=checkDeadZone(Mathf.Abs(targetRotation.y - binding.rigTarget.rotation.y), binding.rotationDeadZone, binding.rigTarget.rotation.y, targetRotation.y );
+        targetRotation.z=checkDeadZone(Mathf.Abs(targetRotation.z - binding.rigTarget.rotation.z), binding.rotationDeadZone, binding.rigTarget.rotation.z, targetRotation.z );
+        // if (Mathf.Abs(positionChange.x)<=binding.positionDeadZone){
+        //     targetPosition.x=binding.rigTarget.position.x;
+        // }if (Mathf.Abs(positionChange.y)<=binding.positionDeadZone){
+        //     targetPosition.y=binding.rigTarget.position.y;
+        // }if (Mathf.Abs(positionChange.z)<=binding.positionDeadZone){
+        //     targetPosition.z=binding.rigTarget.position.z;
+        // }
 
         // if (positionDifference > binding.positionDeadZone)
         // {
-            binding.rigTarget.position = Vector3.SmoothDamp(
-                binding.rigTarget.position,
-                targetPosition,
-                ref binding.positionVelocity,
-                binding.positionSmoothTime
-            );
+        binding.rigTarget.position = Vector3.SmoothDamp(
+            binding.rigTarget.position,
+            targetPosition,
+            ref binding.positionVelocity,
+            binding.positionSmoothTime
+        );
         //     Debug.LogError("after:"+binding.rigTarget.position);
         // }else{
         //     Debug.LogError("ignored");
@@ -418,8 +425,8 @@ public class ArucoMarkerTracker : MonoBehaviour
             );
 
             // Ignore extremely small rotational noise.
-            if (rotationDifference > binding.rotationDeadZone)
-            {
+            // if (rotationDifference > binding.rotationDeadZone)
+            // {
                 float rotationAmount =
                     1f - Mathf.Exp(
                         -binding.rotationFollowSpeed *
@@ -432,7 +439,7 @@ public class ArucoMarkerTracker : MonoBehaviour
                         targetRotation,
                         rotationAmount
                     );
-            }
+            //}
             //       Debug.Log(
             //     $"Marker ID: {binding.markerID}, Position: {binding.rigTarget.position}, Rotation: {targetRotation.eulerAngles}"
             // );
@@ -441,6 +448,12 @@ public class ArucoMarkerTracker : MonoBehaviour
             //     $"Marker ID: {binding.markerID}, Position : {binding.rigTarget.position}"
             // );
     }
+}
+private float checkDeadZone(float change, float deadzone, float rigpos, float target ){
+        if (change<=deadzone){
+            target=rigpos;
+        }
+        return target;
 }
     // private void MoveRigTargets()
     // {
