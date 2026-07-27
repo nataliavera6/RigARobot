@@ -29,7 +29,7 @@ public class ArucoMarkerTracker : MonoBehaviour
         public float rotationFollowSpeed = 1f;
 
         public float positionDeadZone = 0.01f;
-        public float rotationDeadZone = 1.5f;
+        public float rotationDeadZone = 0.5f;
 
         [HideInInspector]
         public Vector3 positionVelocity;
@@ -384,7 +384,7 @@ public class ArucoMarkerTracker : MonoBehaviour
             targetPosition
         );
         Vector3 positionChange = targetPosition - binding.rigTarget.position;
-        //Quaternion rotationChange = targetRotation - binding.rigTarget.rotation;
+    
         float smoothAmount = 1f - Mathf.Exp(-binding.followSpeed * Time.deltaTime);
         Debug.LogError("before:"+binding.rigTarget.position);
         //binding.rigTarget.position= GetFilteredPos(binding.trackedPosition,targetPosition, 0.10f);
@@ -394,7 +394,7 @@ public class ArucoMarkerTracker : MonoBehaviour
 
         targetRotation.x=checkDeadZone(Mathf.Abs(targetRotation.x - binding.rigTarget.rotation.x), binding.rotationDeadZone, binding.rigTarget.rotation.x, targetRotation.x );
         targetRotation.y=checkDeadZone(Mathf.Abs(targetRotation.y - binding.rigTarget.rotation.y), binding.rotationDeadZone, binding.rigTarget.rotation.y, targetRotation.y );
-        targetRotation.z=checkDeadZone(Mathf.Abs(targetRotation.z - binding.rigTarget.rotation.z), binding.rotationDeadZone, binding.rigTarget.rotation.z, targetRotation.z );
+        targetRotation.z=checkDeadZone(-Mathf.Infinity, binding.rotationDeadZone, binding.rigTarget.rotation.z, targetRotation.z );
         // if (Mathf.Abs(positionChange.x)<=binding.positionDeadZone){
         //     targetPosition.x=binding.rigTarget.position.x;
         // }if (Mathf.Abs(positionChange.y)<=binding.positionDeadZone){

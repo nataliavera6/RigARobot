@@ -1415,20 +1415,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   arCameraManager: {fileID: 1553500810}
-  markerLengthMeters: 0.01
+  markerLengthMeters: 0.05
   rig: {fileID: 0}
   bindings:
   - positionSmoothTime: 0.03
     rotationFollowSpeed: 15
     positionDeadZone: 0.01
-    rotationDeadZone: 0.01
+    rotationDeadZone: 0.5
     positionVelocity: {x: 0, y: 0, z: 0}
     markerID: 14
     rigTarget: {fileID: 0}
     positionOffset: {x: 0, y: 0, z: 0}
     rotationOffsetEuler: {x: 0, y: 0, z: 0}
     followSpeed: 50
-    copyRotation: 0
+    copyRotation: 1
     isTracking: 0
     trackedPosition: {x: 0, y: 0, z: 0}
     trackedRotation: {x: 0, y: 0, z: 0, w: 0}
@@ -1502,7 +1502,7 @@ MonoBehaviour:
     rigTarget: {fileID: 0}
     positionOffset: {x: 0, y: 0, z: 0}
     rotationOffsetEuler: {x: 0, y: 0, z: 0}
-    followSpeed: 50
+    followSpeed: 0
     copyRotation: 0
     isTracking: 0
     trackedPosition: {x: 0, y: 0, z: 0}
@@ -5863,7 +5863,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4431411281659544568, guid: 8b366cb572a1241fda5d4cb154d98517, type: 3}
       propertyPath: m_SortingOrder
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 7848639998167173442, guid: 8b366cb572a1241fda5d4cb154d98517, type: 3}
       propertyPath: m_Pivot.x
