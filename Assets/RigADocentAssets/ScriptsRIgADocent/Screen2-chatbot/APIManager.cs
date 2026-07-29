@@ -9,7 +9,8 @@ using UnityEngine.Networking;
 
 public class APIManager : MonoBehaviour
 {
-    [SerializeField] private string gasURL;
+    [SerializeField] private string gasURL="None";
+    [SerializeField] private GasURLScript URL;
     [SerializeField] public string prompt;
     [SerializeField] private GameObject currentArt;
     public string fullprompt=   "You are a museum guide.Rules:Do not discuss politics, religion, medical advice, legal advice, or personal opinions.Keep answers under 100 words.Only answer the question provided.";
@@ -20,6 +21,10 @@ public class APIManager : MonoBehaviour
     public string piece;
     private void Awake()
     {
+        if (gasURL=="None"||string.IsNullOrEmpty(gasURL)){
+            gasURL=URL.getGasURL();
+        }
+        
         // Debug.Log("APIManager Awake");
 
         // StartCoroutine(SendDataToGAS());

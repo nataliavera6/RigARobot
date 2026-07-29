@@ -187,7 +187,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 26.766052, y: 16}
+  m_AnchoredPosition: {x: 26.765259, y: 16}
   m_SizeDelta: {x: -2.1509333, y: 49}
   m_Pivot: {x: -0.1, y: 0}
 --- !u!114 &238294342
@@ -727,7 +727,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f06583a181e341c9a446a34b651beb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  gasURL: https://script.google.com/macros/s/AKfycbzysc6QyUt6O1-UUVdrstnVRC5vdCoQHAj_PSDVcSGNPpOA8gjy56ofDP0nad33md_a/exec
+  gasURL: 
+  URL: {fileID: 1797542612}
   prompt: ' '
   currentArt: {fileID: 495040314}
   fullprompt: You are a museum guide.Rules:Do not discuss politics, religion, medical
@@ -1674,6 +1675,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6605111590819766859, guid: 5b890b1b3d03c4a0fb0188e94c1a5cb1, type: 3}
   m_PrefabInstance: {fileID: 8752705094215144399}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1797542611
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1797542613}
+  - component: {fileID: 1797542612}
+  m_Layer: 0
+  m_Name: GasURL
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1797542612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797542611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40f83926e6d1d4ec4aeb269b96e59e59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GasURLScript
+  GasURL: https://script.google.com/macros/s/AKfycbzysc6QyUt6O1-UUVdrstnVRC5vdCoQHAj_PSDVcSGNPpOA8gjy56ofDP0nad33md_a/exec
+--- !u!4 &1797542613
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1797542611}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1075.3215, y: 193.5283, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1834944981
 GameObject:
   m_ObjectHideFlags: 0
@@ -2451,3 +2497,4 @@ SceneRoots:
   - {fileID: 1969970603}
   - {fileID: 175075481}
   - {fileID: 495040319}
+  - {fileID: 1797542613}
