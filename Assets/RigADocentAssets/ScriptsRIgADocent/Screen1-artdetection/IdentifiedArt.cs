@@ -104,19 +104,19 @@ public class IdentifiedArt : MonoBehaviour
         {
             pieces.Add(itemName);
 
-            Debug.LogError(
-                "Artwork added to list: " + itemName
-            );
+        //     Debug.LogError(
+        //         "Artwork added to list: " + itemName
+        //     );
 
-            Debug.LogError(
-                "Current list count: " + pieces.Count
-            );
-        }
-        else
-        {
-            Debug.LogError(
-                "Artwork was already in list: " + itemName
-            );
+        //     Debug.LogError(
+        //         "Current list count: " + pieces.Count
+        //     );
+        // }
+        // else
+        // {
+        //     Debug.LogError(
+        //         "Artwork was already in list: " + itemName
+        //     );
         }
     }
 }
