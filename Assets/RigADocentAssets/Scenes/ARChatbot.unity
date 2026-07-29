@@ -1704,7 +1704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40f83926e6d1d4ec4aeb269b96e59e59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GasURLScript
-  GasURL: https://script.google.com/macros/s/AKfycbzysc6QyUt6O1-UUVdrstnVRC5vdCoQHAj_PSDVcSGNPpOA8gjy56ofDP0nad33md_a/exec
+  GasURL: 
 --- !u!4 &1797542613
 Transform:
   m_ObjectHideFlags: 0
