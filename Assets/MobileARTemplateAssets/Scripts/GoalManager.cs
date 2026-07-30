@@ -146,18 +146,18 @@ namespace UnityEngine.XR.Templates.AR
             set => m_OptionsButton = value;
         }
 
-        [Tooltip("The Create Button to enable once the greeting prompt is dismissed.")]
-        [SerializeField]
-        GameObject m_CreateButton;
+        // [Tooltip("The Create Button to enable once the greeting prompt is dismissed.")]
+        // [SerializeField]
+        // GameObject m_CreateButton;
 
         /// <summary>
         /// The Create Button to enable once the greeting prompt is dismissed.
         /// </summary>
-        public GameObject createButton
-        {
-            get => m_CreateButton;
-            set => m_CreateButton = value;
-        }
+        // public GameObject createButton
+        // {
+        //     get => m_CreateButton;
+        //     set => m_CreateButton = value;
+        // }
 
         [Tooltip("The AR Template Menu Manager object to enable once the greeting prompt is dismissed.")]
         [SerializeField]
@@ -307,7 +307,7 @@ namespace UnityEngine.XR.Templates.AR
 
             m_GreetingPrompt.SetActive(false);
             m_OptionsButton.SetActive(true);
-            m_CreateButton.SetActive(true);
+            // m_CreateButton.SetActive(true);
             m_MenuManager.enabled = true;
 
             for (int i = startingStep; i < m_StepList.Count; i++)

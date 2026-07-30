@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d943b8cd20d6c2f4ab5b7fcdac3b02b4
+timeCreated: 1449015676
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 51108
+  packageName: Grids MX - The Definitive Snapping Solution
+  packageVersion: 2.0.0
+  assetPath: Assets/Grids MX/Resources/GridsMXData/Keybindings.asset
+  uploadId: 229956

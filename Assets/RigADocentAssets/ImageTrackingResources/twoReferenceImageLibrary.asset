@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 848409ee8ba454f42a5ddff137688a27, type: 3}
+  m_Name: twoReferenceImageLibrary
+  m_EditorClassIdentifier: Unity.XR.ARSubsystems::UnityEngine.XR.ARSubsystems.XRReferenceImageLibrary
+  m_GuidLow: 5467973999619043993
+  m_GuidHigh: 7392690899747839653
+  m_DataStore:
+    m_Storage: []
+  m_Images:
+  - m_SerializedGuid:
+      m_GuidLow: 5356570756988649750
+      m_GuidHigh: 6703258026915875480
+    m_SerializedTextureGuid:
+      m_GuidLow: 7273047582213409353
+      m_GuidHigh: 9221258721741126747
+    m_Size: {x: 0.1, y: 0.075}
+    m_SpecifySize: 1
+    m_Name: Mona Lisa by Leonardo da Vinci
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5212181080588138597
+      m_GuidHigh: 15471549061841373355
+    m_SerializedTextureGuid:
+      m_GuidLow: 2615816935480070358
+      m_GuidHigh: 10230743559053272314
+    m_Size: {x: 0.08, y: 0.06336}
+    m_SpecifySize: 1
+    m_Name: Starry Night by Vincent van Gogh
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5544576001898191808
+      m_GuidHigh: 1158273672169102264
+    m_SerializedTextureGuid:
+      m_GuidLow: 323534564818396554
+      m_GuidHigh: 12681580227618481562
+    m_Size: {x: 0.08, y: 0.06}
+    m_SpecifySize: 1
+    m_Name: The Scream by Edvard Munch
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5026025545176091979
+      m_GuidHigh: 13140703992090261664
+    m_SerializedTextureGuid:
+      m_GuidLow: 6116980470622348903
+      m_GuidHigh: 9609984761464837209
+    m_Size: {x: 0.08, y: 0.10329522}
+    m_SpecifySize: 1
+    m_Name: "The Swing by Jean-Honor\xE9 Fragonard"
+    m_Texture: {fileID: 0}
+  - m_SerializedGuid:
+      m_GuidLow: 5515035952371289996
+      m_GuidHigh: 9597043689066467763
+    m_SerializedTextureGuid:
+      m_GuidLow: 8403779978963682531
+      m_GuidHigh: 359744202745928168
+    m_Size: {x: 0.08, y: 0.090799995}
+    m_SpecifySize: 1
+    m_Name: Dancers in Blue by Edgar Degas
+    m_Texture: {fileID: 0}
