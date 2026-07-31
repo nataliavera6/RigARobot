@@ -28,8 +28,10 @@ public class ArucoMarkerTracker : MonoBehaviour
        public float positionSmoothTime = 0.05f;
         public float rotationFollowSpeed = 1f;
 
-        public float positionDeadZone = 0.01f;
+        
         public float rotationDeadZone = 0.5f;
+        
+  
 
         [HideInInspector]
         public Vector3 positionVelocity;
@@ -57,7 +59,14 @@ public class ArucoMarkerTracker : MonoBehaviour
         [Tooltip("is Body")]
         public bool isbody;
     }
-
+    public float positionDeadZone = 0.05f;
+      //experimental
+        public float xRotationFollowSpeed = 4f;
+        public float yRotationFollowSpeed = 4f;
+        public float zRotationFollowSpeed = 1.5f;
+        public float xRotationDeadZone = 30f;
+        public float yRotationDeadZone = 30f;
+        public float zRotationDeadZone = 30f;
     [Header("AR Foundation")]
     public ARCameraManager arCameraManager;
 
@@ -386,15 +395,13 @@ public class ArucoMarkerTracker : MonoBehaviour
         Vector3 positionChange = targetPosition - binding.rigTarget.position;
     
         float smoothAmount = 1f - Mathf.Exp(-binding.followSpeed * Time.deltaTime);
-        Debug.LogError("before:"+binding.rigTarget.position);
+        // Debug.LogError("before:"+binding.rigTarget.position);
         //binding.rigTarget.position= GetFilteredPos(binding.trackedPosition,targetPosition, 0.10f);
-        targetPosition.x=checkDeadZone(Mathf.Abs(positionChange.x), binding.positionDeadZone, binding.rigTarget.position.x, targetPosition.x );
-        targetPosition.y=checkDeadZone(Mathf.Abs(positionChange.y), binding.positionDeadZone, binding.rigTarget.position.y, targetPosition.y );
-        targetPosition.z=checkDeadZone(Mathf.Abs(positionChange.z), binding.positionDeadZone, binding.rigTarget.position.z, targetPosition.z );
+        targetPosition.x=checkDeadZone(Mathf.Abs(positionChange.x), positionDeadZone, binding.rigTarget.position.x, targetPosition.x );
+        targetPosition.y=checkDeadZone(Mathf.Abs(positionChange.y), positionDeadZone, binding.rigTarget.position.y, targetPosition.y );
+        targetPosition.z=checkDeadZone(Mathf.Abs(positionChange.z), positionDeadZone, binding.rigTarget.position.z, targetPosition.z );
 
-        targetRotation.x=checkDeadZone(Mathf.Abs(targetRotation.x - binding.rigTarget.rotation.x), binding.rotationDeadZone, binding.rigTarget.rotation.x, targetRotation.x );
-        targetRotation.y=checkDeadZone(Mathf.Abs(targetRotation.y - binding.rigTarget.rotation.y), binding.rotationDeadZone, binding.rigTarget.rotation.y, targetRotation.y );
-        targetRotation.z=checkDeadZone(-Mathf.Infinity, binding.rotationDeadZone, binding.rigTarget.rotation.z, targetRotation.z );
+
         // if (Mathf.Abs(positionChange.x)<=binding.positionDeadZone){
         //     targetPosition.x=binding.rigTarget.position.x;
         // }if (Mathf.Abs(positionChange.y)<=binding.positionDeadZone){
@@ -416,29 +423,153 @@ public class ArucoMarkerTracker : MonoBehaviour
         //     Debug.LogError("ignored");
         // }
 
-        // ROTATION
-        if (binding.copyRotation)
-        {
-            float rotationDifference = Quaternion.Angle(
-                binding.rigTarget.rotation,
-                targetRotation
-            );
 
-            // Ignore extremely small rotational noise.
-            // if (rotationDifference > binding.rotationDeadZone)
-            // {
-                float rotationAmount =
-                    1f - Mathf.Exp(
-                        -binding.rotationFollowSpeed *
-                        Time.deltaTime
-                    );
+if (binding.copyRotation)
+{
+    Vector3 currentEuler =
+        binding.rigTarget.rotation.eulerAngles;
 
-                binding.rigTarget.rotation =
-                    Quaternion.Slerp(
-                        binding.rigTarget.rotation,
-                        targetRotation,
-                        rotationAmount
-                    );
+    Vector3 targetEuler =
+        targetRotation.eulerAngles;
+
+    float xAmount =
+        1f - Mathf.Exp(
+            -xRotationFollowSpeed *
+            Time.deltaTime
+        );
+
+    float yAmount =
+        1f - Mathf.Exp(
+            -yRotationFollowSpeed *
+            Time.deltaTime
+        );
+
+    float zAmount =
+        1f - Mathf.Exp(
+            -zRotationFollowSpeed *
+            Time.deltaTime
+        );
+
+    float xDifference = Mathf.Abs(
+        Mathf.DeltaAngle(
+            currentEuler.x,
+            targetEuler.x
+        )
+    );
+
+    float yDifference = Mathf.Abs(
+        Mathf.DeltaAngle(
+            currentEuler.y,
+            targetEuler.y
+        )
+    );
+
+    float zDifference = Mathf.Abs(
+        Mathf.DeltaAngle(
+            currentEuler.z,
+            targetEuler.z
+        )
+    );
+
+    float newX = currentEuler.x;
+    float newY = currentEuler.y;
+    float newZ = currentEuler.z;
+
+    if (xDifference > xRotationDeadZone)
+    {
+        newX = Mathf.LerpAngle(
+            currentEuler.x,
+            targetEuler.x,
+            xAmount
+        );
+        // Debug.LogError("x:"+xDifference+">"+xRotationDeadZone);
+    }
+
+    if (yDifference > yRotationDeadZone)
+    {
+        newY = Mathf.LerpAngle(
+            currentEuler.y,
+            targetEuler.y,
+            yAmount
+        );
+        // Debug.LogError("y:"+yDifference+">"+yRotationDeadZone);
+    }
+
+    if (zDifference > zRotationDeadZone)
+    {
+        newZ = Mathf.LerpAngle(
+            currentEuler.z,
+            targetEuler.z,
+            zAmount
+        );
+        // Debug.LogError("z:"+zDifference+">"+zRotationDeadZone);
+    }
+
+    binding.rigTarget.rotation =
+        Quaternion.Euler(newX, newY, newZ);
+
+
+        // // ROTATION
+        // if (binding.copyRotation)
+        // {
+        //     Debug.LogError("before:"+binding.rigTarget.rotation);
+        //     Vector3 currentEuler = binding.rigTarget.rotation.eulerAngles;
+        //     Vector3 targetEuler = targetRotation.eulerAngles;
+
+        //     float xDifference = Mathf.DeltaAngle(currentEuler.x, targetEuler.x);
+        //     float yDifference = Mathf.DeltaAngle(currentEuler.y, targetEuler.y);
+        //     float zDifference = Mathf.DeltaAngle(currentEuler.z, targetEuler.z);
+
+        //     targetEuler.x = checkDeadZone(
+        //         Mathf.Abs(Mathf.DeltaAngle(currentEuler.x, targetEuler.x)),
+        //         binding.rotationDeadZone,
+        //         currentEuler.x,
+        //         targetEuler.x
+        //     );
+        //     targetEuler.y = checkDeadZone(
+        //         Mathf.Abs(Mathf.DeltaAngle(currentEuler.y, targetEuler.y)),
+        //         binding.rotationDeadZone,
+        //         currentEuler.y,
+        //         targetEuler.y
+        //     );
+        //     targetEuler.z = checkDeadZone(
+        //         Mathf.Infinity,
+        //         binding.rotationDeadZone,
+        //         currentEuler.z,
+        //         targetEuler.z
+        //     );
+
+        //     targetRotation = Quaternion.Euler(targetEuler);
+
+
+
+
+            // // float rotationDifference = Quaternion.Angle(
+            // //     binding.rigTarget.rotation,
+            // //     targetRotation
+            // // );
+            // // targetRotation.x=checkDeadZone(Mathf.Abs(rotationDifference.x), binding.rotationDeadZone, binding.rigTarget.rotation.x, targetRotation.x );
+            // // targetRotation.y=checkDeadZone(Mathf.Abs(rotationDifference.y), binding.rotationDeadZone, binding.rigTarget.rotation.y, targetRotation.y );
+            // // targetRotation.z=checkDeadZone(-Mathf.Infinity, binding.rotationDeadZone, binding.rigTarget.rotation.z, targetRotation.z );
+            // // targetRotation.x=checkDeadZone(Mathf.Abs(targetRotation.x - binding.rigTarget.rotation.x), binding.rotationDeadZone, binding.rigTarget.rotation.x, targetRotation.x );
+            // // targetRotation.y=checkDeadZone(Mathf.Abs(targetRotation.y - binding.rigTarget.rotation.y), binding.rotationDeadZone, binding.rigTarget.rotation.y, targetRotation.y );
+            // // targetRotation.z=checkDeadZone(-Mathf.Infinity, binding.rotationDeadZone, binding.rigTarget.rotation.z, targetRotation.z );
+            // // Ignore extremely small rotational noise.
+            // // if (rotationDifference > binding.rotationDeadZone)
+            // // {
+            //     float rotationAmount =
+            //         1f - Mathf.Exp(
+            //             -binding.rotationFollowSpeed *
+            //             Time.deltaTime
+            //         );
+
+            //     binding.rigTarget.rotation =
+            //         Quaternion.Slerp(
+            //             binding.rigTarget.rotation,
+            //             targetRotation,
+            //             rotationAmount
+            //         );
+            //     Debug.LogError("after:"+binding.rigTarget.rotation);
             //}
             //       Debug.Log(
             //     $"Marker ID: {binding.markerID}, Position: {binding.rigTarget.position}, Rotation: {targetRotation.eulerAngles}"
@@ -452,6 +583,7 @@ public class ArucoMarkerTracker : MonoBehaviour
 private float checkDeadZone(float change, float deadzone, float rigpos, float target ){
         if (change<=deadzone){
             target=rigpos;
+            // Debug.LogError("Moved:"+change+"<="+deadzone);
         }
         return target;
 }

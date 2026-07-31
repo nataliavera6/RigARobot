@@ -23,6 +23,8 @@ public class APIManager : MonoBehaviour
     {
         if (gasURL=="None"||string.IsNullOrEmpty(gasURL)){
             gasURL=URL.getGasURL();
+        }else{
+            Debug.Log("input AI URL in gasURL");
         }
         
         // Debug.Log("APIManager Awake");

@@ -145,7 +145,7 @@ MonoBehaviour:
   - markerName: 9
     RigTarget: {fileID: 6353944908949752181}
   - markerName: 12
-    RigTarget: {fileID: 8293602997472614848}
+    RigTarget: {fileID: 0}
   - markerName: 14
     RigTarget: {fileID: 1156484021513193382}
 --- !u!1 &1583038398136997757
